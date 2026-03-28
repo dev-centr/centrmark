@@ -1,0 +1,8 @@
+= Changelog
+
+This changelog acts as a centralized historical record of the evolution of the CentrMark standard over time.
+
+== 2026-03-14 – CentrMark Inauguration
+
+* Initial formal spec, EBNF grammar layout, and feature showcase (fenced blockquotes, generic list auto-increments).
+* See link:changelog-details/2026-03-14 - centrmark-inauguration.adoc[Detailed changelog].

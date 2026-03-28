@@ -1,0 +1,36 @@
+= CentrMark (CMK)
+:toc: macro
+:sectnums:
+:sectanchors:
+
+CentrMark (`.cmk`) is the ideal markup format designed for modern technical writing and developer documentation. It explicitly seeks to address the limitations of Markdown, the syntactic noise of AsciiDoc, and the heavy developer-centric Javascript infiltration introduced by MDX, by providing a completely declarative, clean, and extensible syntax for document blocks and spans.
+
+toc::[]
+
+== Core Philosophy
+
+1. **Familiar Base**: The 90% use case remains pure Markdown (`#` headers, `*` bold, `[]()` links) because it is ubiquitous, highly readable, and typed entirely with common keyboard keys without excessive shifting.
+2. **Native Extensibility**: By avoiding HTML tags and React JSX (from MDX), CentrMark keeps documentation distinct from code. It uses a uniform Directive syntax for structural and dynamic features (like Confluence macros).
+3. **SDL-Powered**: CentrMark abandons YAML frontmatter and JSON configuration, natively embracing *SDL (Simple Declarative Language)* for strongly typed, unquoted configuration of frontmatter and component properties.
+4. **Context-Sensitive Blocks**: Like Python and Markdown, CentrMark is context-sensitive to reduce noise. Block hierarchies are managed visually with colons (`:::`) preserving pure text flow to the human eye.
+5. **Human and Machine Readability**: Structuring is parsable directly into unified ASTs mapping perfectly to component frameworks or static site generators.
+
+== Why Not Markdown?
+Traditional Markdown is too weak for technical writing. It lacks a standard Table of Contents, native support for tabs, admonitions, file transclusions, definition lists, or standardized cross-links. Markdown forces you into using fragile HTML fallback or proprietary markdown flavors.
+
+== Why Not AsciiDoc?
+AsciiDoc is robust but suffers from extreme syntax noisiness. The proliferation of `====`, `----`, `....`, `[source, type]`, and obscure attribute scoping make simple documents look unappealing in plaintext, slowing down the writing process.
+
+== Why Not MDX?
+MDX solves extensibility by injecting JSX and Javascript module importing into documents (`import { Button } from './Button'`). What was once text becomes an engineering artifact. Technical writers shouldn't be writing React code to render a warning banner.
+
+== The CentrMark Answer
+CentrMark defines three core mechanisms that extend Markdown capabilities seamlessly:
+* **The Void Directive:** `::toc` – self-closing, single-line functions or elements without content.
+* **The Block Directive:** `::: tabs` – container elements that hold complex markdown or other directives.
+* **The Inline Directive:** `@badge[color="red"](New)` – text-span level enrichments.
+
+For detailed breakdown, please see the `spec/` folder.
+
+== Changelog
+See the link:changelog.adoc[Changelog] for an iteration history of the specification.

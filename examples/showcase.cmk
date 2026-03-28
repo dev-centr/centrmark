@@ -1,0 +1,143 @@
+---
+title "Showcase Document"
+author {
+  name "CentrMark Team"
+  role "Documentation"
+}
+tags "example", "showcase", "syntax"
+version 1.0.0
+status "Final"
+---
+
+# CentrMark Feature Showcase
+
+Welcome to the ultimate technical writing format. This document evaluates and demonstrates every major feature of the CentrMark standard.
+
+## Built-in Table of Contents
+
+Place a Void Directive anywhere in the document to render an automated Table of Contents.
+
+:: toc [depth=3]
+
+## Basic Markdown
+
+As expected, paragraphs wrap automatically. Text can be **bold**, _italic_, or `inline-code`.
+You can quote people nicely with Fenced Blockquotes. They look like giant quotation marks!
+
+((
+The limit of MDX is when technical writers have to learn React.
+-- A wise writer
+))
+
+You can also nest blockquotes cleanly without prefixes on every single line.
+
+((
+If you ever need to include a quote inside a quote, just put it inside:
+((
+There is nothing more exhausting than tracking the `> ` prefixes when fixing a copy-pasting error.
+- Mahatma Gandhi, probably
+))
+))
+
+## Advanced Lists
+
+CentrMark fully handles typical numbering and bullet points, but solves key ergonomic flaws visually and parsing-wise.
+
+* Outer Level List
+- Inner Level List (using flattening via symbol changes)
+0. Auto-numbered generic item
+0. Another numbered step
+* Back to outer level list without ever needing to touch tab spacing!
+
+If you want to append blocks of text to a list context without fighting the spacebar or an Editor's auto-format:
+
+0. Update your `.bashrc` or `.zshrc`.
++
+```bash
+export PATH="/centrmark/bin:$PATH"
+```
++
+0. Apply the changes to your terminal.
+
+## Directives
+
+Directives are the soul of CentrMark. They bridge the gap between simple text and rich interfaces.
+
+### Inline Directives
+Make your document pop without writing HTML spans or polluting your styles.
+Status: @badge[color="success"](Stable)
+For help, contact @mention[rjamd]. 
+Watch out for the @icon[name="lucide-alert-triangle"] symbol.
+
+### Admonitions
+Instead of typing custom HTML div elements for alerts, use Block Directives.
+
+::: warning [title="Deprecation Notice"]
+This API is slated for removal in `${version}`. Please migrate to the v2 endpoint soon.
+:::
+
+::: success
+The operation completed perfectly. Notice you don't need properties to use a block directive!
+:::
+
+## Multi-Language Code References
+
+A common problem in APIs is showing code across multiple languages. The standard Markdown solution is scrolling blocks. CentrMark natively groups them cleanly.
+
+:::: tabs [sync="language" align="center"]
+
+::: tab [label="CURL"]
+```bash
+curl -X GET https://api.example.com/status
+```
+:::
+
+::: tab [label="Python"]
+```python
+import requests
+res = requests.get("https://api.example.com/status")
+```
+:::
+
+::: tab [label="Go"]
+```go
+resp, err := http.Get("https://api.example.com/status")
+```
+:::
+
+::::
+
+## Cross Referencing & Definition Lists
+
+You can jump to sections quickly using Semantic Links: [[#multi-language-code-references | Go back to code]].
+
+Or learn about these terms:
+~ URI
+  Uniform Resource Identifier.
+~ SDL
+  **Simple Declarative Language**. The modern typing layer for configuration.
+
+## Structural Tables
+
+If markdown pipe-tables aren't enough (they never are), you drop down into structural tables without needing Asciidoc's crazy pipe-equals syntax.
+
+::: table [columns="1fr 2fr" gap="1rem" align="top"]
+:: row
+  ::: col [span=2]
+  ### The API Mapping Protocol
+  This covers the entire mapping spec.
+  :::
+:: row
+  ::: col
+  `GET /users`
+  :::
+  ::: col
+  Returns a list of users.
+  You can embed **lists** in table cells easily:
+  - Admin
+  - Standard
+  :::
+:::
+
+## Conclusion
+CentrMark is the future of human-readable documentation that builds cleanly into complex UIs. It's time to upgrade.
