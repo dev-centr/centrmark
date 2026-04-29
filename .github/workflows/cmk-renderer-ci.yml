@@ -1,0 +1,62 @@
+name: CMK Renderer CI
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "packages/cmk-renderer/**"
+      - "website/src/routes/examples/**"
+      - "tools/vscode-cmk/**"
+      - ".github/workflows/cmk-renderer-ci.yml"
+  pull_request:
+    branches:
+      - main
+    paths:
+      - "packages/cmk-renderer/**"
+      - "website/src/routes/examples/**"
+      - "tools/vscode-cmk/**"
+      - ".github/workflows/cmk-renderer-ci.yml"
+  workflow_dispatch:
+
+jobs:
+  renderer-conformance:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - name: Build and test shared renderer
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd packages/cmk-renderer
+          pnpm install --frozen-lockfile=false
+          pnpm run build
+          pnpm run test
+
+      - name: Build website integration
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd website
+          pnpm install --frozen-lockfile=false
+          pnpm run build
+
+      - name: Build VSCode extension integration
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd tools/vscode-cmk
+          pnpm install --frozen-lockfile=false
+          pnpm run build

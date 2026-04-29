@@ -11,6 +11,9 @@ importers:
       '@asciidoctor/core':
         specifier: ^3.0.0
         version: 3.0.4
+      '@centrmark/cmk-renderer':
+        specifier: file:../packages/cmk-renderer
+        version: file:../packages/cmk-renderer
       '@kobalte/core':
         specifier: ^0.13.11
         version: 0.13.11(solid-js@1.9.12)
@@ -172,6 +175,9 @@ packages:
   '@babel/types@7.29.0':
     resolution: {integrity: sha512-LwdZHpScM4Qz8Xw2iKSzS+cfglZzJGvofQICy7W7v4caru4EaAmyUuO6BGrbyQ2mYV11W0U8j5mBhd14dd3B0A==}
     engines: {node: '>=6.9.0'}
+
+  '@centrmark/cmk-renderer@file:../packages/cmk-renderer':
+    resolution: {directory: ../packages/cmk-renderer, type: directory}
 
   '@cloudflare/kv-asset-handler@0.4.2':
     resolution: {integrity: sha512-SIOD2DxrRRwQ+jgzlXCqoEFiKOFqaPjhnNTGKXSRLvp1HiOvapLaFG2kEr9dYQTYe8rKrd9uvDUzmAITeNyaHQ==}
@@ -3295,6 +3301,8 @@ snapshots:
     dependencies:
       '@babel/helper-string-parser': 7.27.1
       '@babel/helper-validator-identifier': 7.28.5
+
+  '@centrmark/cmk-renderer@file:../packages/cmk-renderer': {}
 
   '@cloudflare/kv-asset-handler@0.4.2': {}
 

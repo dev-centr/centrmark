@@ -9,6 +9,7 @@
     "start": "vinxi start"
   },
   "dependencies": {
+    "@centrmark/cmk-renderer": "file:../packages/cmk-renderer",
     "@kobalte/core": "^0.13.11",
     "@asciidoctor/core": "^3.0.0",
     "@solidjs/meta": "^0.29.3",

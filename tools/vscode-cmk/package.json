@@ -12,7 +12,17 @@
     "Programming Languages"
   ],
   "main": "./dist/extension.js",
+  "activationEvents": [
+    "onLanguage:cmk",
+    "onCommand:centrmark.preview"
+  ],
   "contributes": {
+    "commands": [
+      {
+        "command": "centrmark.preview",
+        "title": "CentrMark: Open Preview"
+      }
+    ],
     "languages": [
       {
         "id": "cmk",
@@ -70,6 +80,9 @@
     "package": "pnpm exec vsce package",
     "publish:ovsx": "pnpm exec ovsx publish",
     "lint": "tsc -p . --noEmit"
+  },
+  "dependencies": {
+    "@centrmark/cmk-renderer": "file:../../packages/cmk-renderer"
   },
   "devDependencies": {
     "@types/vscode": "^1.90.0",

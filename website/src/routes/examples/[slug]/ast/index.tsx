@@ -1,6 +1,7 @@
 import { createResource } from "solid-js";
 import { Title } from "@solidjs/meta";
 import { useParams } from "@solidjs/router";
+import { astJsonToRenderIR, renderIRToHtml, type CmkAstDocument } from "@centrmark/cmk-renderer";
 
 async function fetchText(path: string): Promise<string> {
   const res = await fetch(path);
@@ -16,6 +17,14 @@ export default function ExampleAstView() {
     () => (typeof window === "undefined" ? undefined : slug()),
     (s) => fetchText(`/examples/${s}.ast.json`),
   );
+  const [renderedHtml] = createResource(
+    () => astJson(),
+    async (raw) => {
+      if (!raw) return "";
+      const parsed = JSON.parse(raw) as CmkAstDocument;
+      return renderIRToHtml(astJsonToRenderIR(parsed));
+    }
+  );
 
   return (
     <main class="layout-reserved max-w-4xl mx-auto min-h-screen pt-10 pb-16">
@@ -25,6 +34,15 @@ export default function ExampleAstView() {
       <p class="text-muted-foreground mb-8">
         Canonical AST JSON produced by the reference implementation.
       </p>
+
+      {renderedHtml.loading ? (
+        <div>Rendering preview...</div>
+      ) : renderedHtml() ? (
+        <section class="mb-8 rounded-lg border border-border bg-card p-4">
+          <h2 class="text-xl font-semibold mb-3">Rendered Preview</h2>
+          <div innerHTML={renderedHtml()} />
+        </section>
+      ) : null}
 
       {astJson.loading ? (
         <div>Loading...</div>
