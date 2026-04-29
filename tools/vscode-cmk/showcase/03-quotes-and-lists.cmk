@@ -1,1 +1,19 @@
-// Quotes and list container nesting::: quote author="Team"Top-level quote content.::: list kind="unordered"::: itemFirst bullet:::::: itemSecond bullet with nested quote.::: quoteInner quote inside list item.::::::::::::
+// Quotes and list container nesting
+::: quote author="Team"
+Top-level quote content.
+
+::: list kind="unordered"
+::: item
+First bullet
+:::
+::: item
+Second bullet with nested quote.
+
+::: quote
+Inner quote inside list item.
+:::
+
+:::
+:::
+
+:::

@@ -1,1 +1,12 @@
-// Includes and reusable values (AsciiDoc parity sample)::: set name="project" value="FoodTruckNerdz Site"::: set name="region" value="Tennessee"::: include file="./partials/hero.cmk"::: include file="./partials/events.cmk" lines="1..40"::: include file="./partials/vendors.cmk" tag="active" leveloffset="+1"::: section id="reuse-demo"Project: {project}Primary region: {region}:::
+// Includes and reusable values (AsciiDoc parity sample)
+::: set name="project" value="FoodTruckNerdz Site"
+::: set name="region" value="Tennessee"
+
+::: include file="./partials/hero.cmk"
+::: include file="./partials/events.cmk" lines="1..40"
+::: include file="./partials/vendors.cmk" tag="active" leveloffset="+1"
+
+::: section id="reuse-demo"
+Project: {project}
+Primary region: {region}
+:::

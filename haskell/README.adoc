@@ -1,1 +1,47 @@
-= CentrMark reference spec (Haskell)This folder contains an initial Haskell-based reference for CentrMark semantics.For MVP, the goal is to:* mirror the AST contracts used by the D reference implementation* enable later performance comparisons against the optimized D engineAt this stage, parts are scaffolding/stubs; expand as you add CTS vectors.== Current CMK baseline featuresThe CMK baseline currently targets block-first authoring with explicit directives.* Block directives (`::: section`, `::: quote`, `::: table`, etc.) with explicit close markers (`:::`).* Inline variable references (`{name}`) and semantic links in the AST contract.== AsciiDoc parity additionsTo keep CMK practical for doc authoring, CMK now includes comparable features for common AsciiDoc workflows:* *Cross-file includes* (AsciiDoc `include::` equivalent) via a void directive:+[source,cmk]----::: include file="./partials/intro.cmk"::: include file="./partials/install.cmk" lines="1..24"----+Supported include properties in the spec subset:+* `file` (required): relative or absolute include target* `lines` (optional): line selection range expression* `tag` (optional): named region selector* `leveloffset` (optional): heading offset to apply to included content* *Document attributes* (AsciiDoc attribute declaration/substitution equivalent) via:+[source,cmk]----::: set name="project" value="FoodTruckNerdz Site"Project: {project}----These parity features are specification-level in this folder and should be reflected by wrappers, parser work, and CTS vectors as implementation advances.
+= CentrMark reference spec (Haskell)
+
+This folder contains an initial Haskell-based reference for CentrMark semantics.
+
+For MVP, the goal is to:
+
+* mirror the AST contracts used by the D reference implementation
+* enable later performance comparisons against the optimized D engine
+
+At this stage, parts are scaffolding/stubs; expand as you add CTS vectors.
+
+== Current CMK baseline features
+
+The CMK baseline currently targets block-first authoring with explicit directives.
+
+* Block directives (`::: section`, `::: quote`, `::: table`, etc.) with explicit close markers (`:::`).
+* Inline variable references (`{name}`) and semantic links in the AST contract.
+
+== AsciiDoc parity additions
+
+To keep CMK practical for doc authoring, CMK now includes comparable features for common AsciiDoc workflows:
+
+* *Cross-file includes* (AsciiDoc `include::` equivalent) via a void directive:
++
+[source,cmk]
+----
+::: include file="./partials/intro.cmk"
+::: include file="./partials/install.cmk" lines="1..24"
+----
++
+Supported include properties in the spec subset:
++
+* `file` (required): relative or absolute include target
+* `lines` (optional): line selection range expression
+* `tag` (optional): named region selector
+* `leveloffset` (optional): heading offset to apply to included content
+
+* *Document attributes* (AsciiDoc attribute declaration/substitution equivalent) via:
++
+[source,cmk]
+----
+::: set name="project" value="FoodTruckNerdz Site"
+Project: {project}
+----
+
+These parity features are specification-level in this folder and should be reflected by wrappers, parser work, and CTS vectors as implementation advances.
+

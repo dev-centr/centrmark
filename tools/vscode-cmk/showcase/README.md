@@ -1,1 +1,18 @@
-# CMK ShowcaseFeature-focused showcase files for syntax and depth-highlighting verification.- `01-blocks.cmk` - Core block open/close forms.- `02-tables.cmk` - Pure block table model (`table`/`row`/`col`).- `03-quotes-and-lists.cmk` - Nested quote/list container patterns.- `04-mixed-nesting.cmk` - Cross-feature nesting stress sample.- `05-edge-cases.cmk` - Malformed or partial structures for editor behavior checks.- `06-includes-and-reuse.cmk` - AsciiDoc-parity include/reuse patterns.Use these files in VS Code to confirm:- `:::` markers are recognized consistently.- Nesting depth colors follow block depth transitions.- Folding markers align with block boundaries.Style note: official examples include an empty line before and after nested blocks.
+# CMK Showcase
+
+Feature-focused showcase files for syntax and depth-highlighting verification.
+
+- `01-blocks.cmk` - Core block open/close forms.
+- `02-tables.cmk` - Pure block table model (`table`/`row`/`col`).
+- `03-quotes-and-lists.cmk` - Nested quote/list container patterns.
+- `04-mixed-nesting.cmk` - Cross-feature nesting stress sample.
+- `05-edge-cases.cmk` - Malformed or partial structures for editor behavior checks.
+- `06-includes-and-reuse.cmk` - AsciiDoc-parity include/reuse patterns.
+
+Use these files in VS Code to confirm:
+
+- `:::` markers are recognized consistently.
+- Nesting depth colors follow block depth transitions.
+- Folding markers align with block boundaries.
+
+Style note: official examples include an empty line before and after nested blocks.

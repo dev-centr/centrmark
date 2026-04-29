@@ -1,1 +1,60 @@
-{  "name": "CentrMark",  "scopeName": "source.cmk",  "patterns": [    {      "name": "meta.block.directive.void.cmk",      "match": "^(\\s*)(:::)\\s*(include|set)\\b(.*)$",      "captures": {        "2": {          "name": "keyword.control.block.void.cmk"        },        "3": {          "name": "entity.name.type.block.cmk"        },        "4": {          "name": "meta.block.attrs.cmk"        }      }    },    {      "name": "meta.block.directive.cmk",      "begin": "^(\\s*)(:::)\\s*([A-Za-z][\\w-]*)(.*)$",      "beginCaptures": {        "2": {          "name": "keyword.control.block.open.cmk"        },        "3": {          "name": "entity.name.type.block.cmk"        },        "4": {          "name": "meta.block.attrs.cmk"        }      },      "end": "^(\\s*)(:::)\\s*$",      "endCaptures": {        "2": {          "name": "keyword.control.block.close.cmk"        }      },      "patterns": [        {          "name": "comment.line.double-slash.cmk",          "match": "\\/\\/.*$"        },        {          "name": "constant.language.boolean.cmk",          "match": "\\b(true|false|null)\\b"        }      ]    },    {      "name": "keyword.control.block.close.cmk",      "match": "^(\\s*)(:::)\\s*$"    },    {      "name": "comment.line.double-slash.cmk",      "match": "\\/\\/.*$"    }  ]}
+{
+  "name": "CentrMark",
+  "scopeName": "source.cmk",
+  "patterns": [
+    {
+      "name": "meta.block.directive.void.cmk",
+      "match": "^(\\s*)(:::)\\s*(include|set)\\b(.*)$",
+      "captures": {
+        "2": {
+          "name": "keyword.control.block.void.cmk"
+        },
+        "3": {
+          "name": "entity.name.type.block.cmk"
+        },
+        "4": {
+          "name": "meta.block.attrs.cmk"
+        }
+      }
+    },
+    {
+      "name": "meta.block.directive.cmk",
+      "begin": "^(\\s*)(:::)\\s*([A-Za-z][\\w-]*)(.*)$",
+      "beginCaptures": {
+        "2": {
+          "name": "keyword.control.block.open.cmk"
+        },
+        "3": {
+          "name": "entity.name.type.block.cmk"
+        },
+        "4": {
+          "name": "meta.block.attrs.cmk"
+        }
+      },
+      "end": "^(\\s*)(:::)\\s*$",
+      "endCaptures": {
+        "2": {
+          "name": "keyword.control.block.close.cmk"
+        }
+      },
+      "patterns": [
+        {
+          "name": "comment.line.double-slash.cmk",
+          "match": "\\/\\/.*$"
+        },
+        {
+          "name": "constant.language.boolean.cmk",
+          "match": "\\b(true|false|null)\\b"
+        }
+      ]
+    },
+    {
+      "name": "keyword.control.block.close.cmk",
+      "match": "^(\\s*)(:::)\\s*$"
+    },
+    {
+      "name": "comment.line.double-slash.cmk",
+      "match": "\\/\\/.*$"
+    }
+  ]
+}

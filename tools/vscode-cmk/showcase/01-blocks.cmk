@@ -1,1 +1,20 @@
-// Core block forms::: document title="Showcase: Blocks"::: section id="intro"This is plain text inside a section block.:::::: note kind="info"Notes are regular blocks in the same model.:::::: section id="deep"::: section id="deeper"::: section id="deepest"Depth stress block for semantic token coloring.::::::::::::
+// Core block forms
+::: document title="Showcase: Blocks"
+
+::: section id="intro"
+This is plain text inside a section block.
+:::
+
+::: note kind="info"
+Notes are regular blocks in the same model.
+:::
+
+::: section id="deep"
+::: section id="deeper"
+::: section id="deepest"
+Depth stress block for semantic token coloring.
+:::
+:::
+:::
+
+:::

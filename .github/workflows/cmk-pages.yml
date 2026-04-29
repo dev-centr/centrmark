@@ -1,1 +1,91 @@
-name: CMK Pageson:  push:    branches:      - main    paths:      - "haskell/cmk/**"      - "haskell/README.adoc"      - "wrappers/**"      - "tools/vscode-cmk/showcase/**"      - ".github/workflows/cmk-pages.yml"  workflow_dispatch:permissions:  contents: read  pages: write  id-token: writeconcurrency:  group: cmk-pages  cancel-in-progress: truejobs:  build:    runs-on: ubuntu-latest    steps:      - name: Checkout        uses: actions/checkout@v4      - name: Build static site bundle        shell: bash        run: |          set -euo pipefail          mkdir -p _site/showcase _site/sources          cp -R tools/vscode-cmk/showcase/. _site/showcase/          cp -R haskell/cmk/. _site/sources/          cp haskell/README.adoc _site/haskell-README.adoc          cp wrappers/README.adoc _site/wrappers-README.adoc          cat > _site/index.html <<'HTML'          <!doctype html>          <html lang="en">          <head>            <meta charset="utf-8" />            <meta name="viewport" content="width=device-width, initial-scale=1" />            <title>CentrMark CMK</title>            <style>              body { font-family: system-ui, sans-serif; margin: 2rem; line-height: 1.5; }              h1, h2 { margin-top: 1.25rem; }              code { background: #f3f4f6; padding: 0.15rem 0.3rem; border-radius: 4px; }            </style>          </head>          <body>            <h1>CentrMark CMK Pages</h1>            <p>This site is built from repository CMK assets.</p>            <h2>Showcase</h2>            <ul>              <li><a href="./showcase/README.md">Showcase README</a></li>              <li><a href="./showcase/01-blocks.cmk">01 blocks</a></li>              <li><a href="./showcase/02-tables.cmk">02 tables</a></li>              <li><a href="./showcase/03-quotes-and-lists.cmk">03 quotes and lists</a></li>              <li><a href="./showcase/04-mixed-nesting.cmk">04 mixed nesting</a></li>              <li><a href="./showcase/05-edge-cases.cmk">05 edge cases</a></li>              <li><a href="./showcase/06-includes-and-reuse.cmk">06 includes and reuse</a></li>            </ul>            <h2>Reference Sources</h2>            <ul>              <li><a href="./sources/AST.hs">AST.hs</a></li>              <li><a href="./sources/Parser.hs">Parser.hs</a></li>              <li><a href="./sources/Json.hs">Json.hs</a></li>              <li><a href="./haskell-README.adoc">Haskell README</a></li>              <li><a href="./wrappers-README.adoc">Wrappers README</a></li>            </ul>          </body>          </html>          HTML      - name: Upload Pages artifact        uses: actions/upload-pages-artifact@v3        with:          path: _site  deploy:    needs: build    runs-on: ubuntu-latest    steps:      - name: Deploy to GitHub Pages        id: deployment        uses: actions/deploy-pages@v4
+name: CMK Pages
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "haskell/cmk/**"
+      - "haskell/README.adoc"
+      - "wrappers/**"
+      - "tools/vscode-cmk/showcase/**"
+      - ".github/workflows/cmk-pages.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: cmk-pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build static site bundle
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p _site/showcase _site/sources
+
+          cp -R tools/vscode-cmk/showcase/. _site/showcase/
+          cp -R haskell/cmk/. _site/sources/
+          cp haskell/README.adoc _site/haskell-README.adoc
+          cp wrappers/README.adoc _site/wrappers-README.adoc
+
+          cat > _site/index.html <<'HTML'
+          <!doctype html>
+          <html lang="en">
+          <head>
+            <meta charset="utf-8" />
+            <meta name="viewport" content="width=device-width, initial-scale=1" />
+            <title>CentrMark CMK</title>
+            <style>
+              body { font-family: system-ui, sans-serif; margin: 2rem; line-height: 1.5; }
+              h1, h2 { margin-top: 1.25rem; }
+              code { background: #f3f4f6; padding: 0.15rem 0.3rem; border-radius: 4px; }
+            </style>
+          </head>
+          <body>
+            <h1>CentrMark CMK Pages</h1>
+            <p>This site is built from repository CMK assets.</p>
+            <h2>Showcase</h2>
+            <ul>
+              <li><a href="./showcase/README.md">Showcase README</a></li>
+              <li><a href="./showcase/01-blocks.cmk">01 blocks</a></li>
+              <li><a href="./showcase/02-tables.cmk">02 tables</a></li>
+              <li><a href="./showcase/03-quotes-and-lists.cmk">03 quotes and lists</a></li>
+              <li><a href="./showcase/04-mixed-nesting.cmk">04 mixed nesting</a></li>
+              <li><a href="./showcase/05-edge-cases.cmk">05 edge cases</a></li>
+              <li><a href="./showcase/06-includes-and-reuse.cmk">06 includes and reuse</a></li>
+            </ul>
+            <h2>Reference Sources</h2>
+            <ul>
+              <li><a href="./sources/AST.hs">AST.hs</a></li>
+              <li><a href="./sources/Parser.hs">Parser.hs</a></li>
+              <li><a href="./sources/Json.hs">Json.hs</a></li>
+              <li><a href="./haskell-README.adoc">Haskell README</a></li>
+              <li><a href="./wrappers-README.adoc">Wrappers README</a></li>
+            </ul>
+          </body>
+          </html>
+          HTML
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

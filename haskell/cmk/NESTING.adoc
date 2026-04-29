@@ -1,1 +1,26 @@
-= CMK nesting baselineThis note records the current baseline decision for nesting in CMK.== DecisionCMK uses a *pure block model* for nesting.* No dedicated nesting token (such as `<<` / `>>`) is used.* Nested structure is expressed directly by block containers.* Block purpose is declared by normal block declarations (for example, `::: table`, `::: row`, `::: col`, `::: quote`).== Rationale* Avoid introducing a second structural syntax just for recursion.* Keep authoring and parsing consistent across features (tables, quotes, and future block types).* Let editor tooling carry visual nesting cues rather than adding syntax noise.== Editor baselineA baseline VS Code extension should provide:* syntax highlighting for CMK block syntax* visual nesting cues based on computed block depth (for example color ramp or background accents)This keeps source syntax simple while preserving strong visual parseability in the editor.
+= CMK nesting baseline
+
+This note records the current baseline decision for nesting in CMK.
+
+== Decision
+
+CMK uses a *pure block model* for nesting.
+
+* No dedicated nesting token (such as `<<` / `>>`) is used.
+* Nested structure is expressed directly by block containers.
+* Block purpose is declared by normal block declarations (for example, `::: table`, `::: row`, `::: col`, `::: quote`).
+
+== Rationale
+
+* Avoid introducing a second structural syntax just for recursion.
+* Keep authoring and parsing consistent across features (tables, quotes, and future block types).
+* Let editor tooling carry visual nesting cues rather than adding syntax noise.
+
+== Editor baseline
+
+A baseline VS Code extension should provide:
+
+* syntax highlighting for CMK block syntax
+* visual nesting cues based on computed block depth (for example color ramp or background accents)
+
+This keeps source syntax simple while preserving strong visual parseability in the editor.

@@ -1,1 +1,80 @@
-{  "name": "centrmark-cmk",  "displayName": "CentrMark (CMK)",  "description": "Baseline VS Code support for CentrMark pure block syntax.",  "version": "0.0.2",  "publisher": "foodtrucknerdz",  "license": "UNLICENSED",  "engines": {    "vscode": "^1.90.0"  },  "categories": [    "Programming Languages"  ],  "main": "./dist/extension.js",  "contributes": {    "languages": [      {        "id": "cmk",        "aliases": [          "CentrMark",          "CMK"        ],        "extensions": [          ".cmk"        ],        "configuration": "./language-configuration.json"      }    ],    "grammars": [      {        "language": "cmk",        "scopeName": "source.cmk",        "path": "./syntaxes/cmk.tmLanguage.json"      }    ],    "semanticTokenTypes": [      {        "id": "cmkNest0",        "description": "CMK block marker nesting depth 0"      },      {        "id": "cmkNest1",        "description": "CMK block marker nesting depth 1"      },      {        "id": "cmkNest2",        "description": "CMK block marker nesting depth 2"      },      {        "id": "cmkNest3",        "description": "CMK block marker nesting depth 3"      },      {        "id": "cmkNest4",        "description": "CMK block marker nesting depth 4"      },      {        "id": "cmkNest5",        "description": "CMK block marker nesting depth 5+"      }    ],    "configurationDefaults": {      "[cmk]": {        "editor.semanticHighlighting.enabled": true      }    }  },  "scripts": {    "build": "tsc -p .",    "package": "pnpm exec vsce package",    "publish:ovsx": "pnpm exec ovsx publish",    "lint": "tsc -p . --noEmit"  },  "devDependencies": {    "@types/vscode": "^1.90.0",    "ovsx": "^0.10.5",    "typescript": "^5.9.3",    "vsce": "^2.15.0"  }}
+{
+  "name": "centrmark-cmk",
+  "displayName": "CentrMark (CMK)",
+  "description": "Baseline VS Code support for CentrMark pure block syntax.",
+  "version": "0.0.2",
+  "publisher": "foodtrucknerdz",
+  "license": "UNLICENSED",
+  "engines": {
+    "vscode": "^1.90.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "languages": [
+      {
+        "id": "cmk",
+        "aliases": [
+          "CentrMark",
+          "CMK"
+        ],
+        "extensions": [
+          ".cmk"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "cmk",
+        "scopeName": "source.cmk",
+        "path": "./syntaxes/cmk.tmLanguage.json"
+      }
+    ],
+    "semanticTokenTypes": [
+      {
+        "id": "cmkNest0",
+        "description": "CMK block marker nesting depth 0"
+      },
+      {
+        "id": "cmkNest1",
+        "description": "CMK block marker nesting depth 1"
+      },
+      {
+        "id": "cmkNest2",
+        "description": "CMK block marker nesting depth 2"
+      },
+      {
+        "id": "cmkNest3",
+        "description": "CMK block marker nesting depth 3"
+      },
+      {
+        "id": "cmkNest4",
+        "description": "CMK block marker nesting depth 4"
+      },
+      {
+        "id": "cmkNest5",
+        "description": "CMK block marker nesting depth 5+"
+      }
+    ],
+    "configurationDefaults": {
+      "[cmk]": {
+        "editor.semanticHighlighting.enabled": true
+      }
+    }
+  },
+  "scripts": {
+    "build": "tsc -p .",
+    "package": "pnpm exec vsce package",
+    "publish:ovsx": "pnpm exec ovsx publish",
+    "lint": "tsc -p . --noEmit"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.90.0",
+    "ovsx": "^0.10.5",
+    "typescript": "^5.9.3",
+    "vsce": "^2.15.0"
+  }
+}

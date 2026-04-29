@@ -1,1 +1,30 @@
-// Mixed feature nesting stress sample::: article slug="mixed-nesting"::: section id="overview"::: quoteNested quote under section.::: table cols=2::: row::: colLeft cell with list:::: list kind="ordered"::: itemStep one:::::: itemStep two:::::::::::: colRight cell text.::::::::::::::::::
+// Mixed feature nesting stress sample
+::: article slug="mixed-nesting"
+::: section id="overview"
+::: quote
+Nested quote under section.
+
+::: table cols=2
+::: row
+::: col
+Left cell with list:
+
+::: list kind="ordered"
+::: item
+Step one
+:::
+::: item
+Step two
+:::
+:::
+
+:::
+::: col
+Right cell text.
+:::
+:::
+:::
+:::
+:::
+
+:::
