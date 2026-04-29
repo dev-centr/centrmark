@@ -1,0 +1,50 @@
+*
+
+# Allow-list roots
+!/.gitignore
+!/.github/
+!/antora/
+!/dlang/
+!/docs/
+!/examples/
+!/haskell/
+!/packages/
+!/spec/
+!/tools/
+!/website/
+!/wrappers/
+
+# Re-allow contents under allow-listed roots
+!/.github/**
+!/antora/**
+!/dlang/**
+!/docs/**
+!/examples/**
+!/haskell/**
+!/packages/**
+!/spec/**
+!/tools/**
+!/website/**
+!/wrappers/**
+
+# Allow-list root metadata/docs
+!/*.md
+!/*.adoc
+!/*.txt
+!/*.json
+!/*.json5
+!/*.yaml
+!/*.yml
+!/LICENSE*
+!/README*
+
+# Blacklist generated/build artifacts
+**/node_modules/
+**/.output/
+**/.vinxi/
+**/dist/
+**/bin/
+**/.cache/
+**/.turbo/
+**/coverage/
+**/*.tsbuildinfo
