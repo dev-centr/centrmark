@@ -13,6 +13,7 @@ on:
 
 permissions:
   contents: write
+  id-token: write
 
 jobs:
   build-cli:
@@ -117,3 +118,60 @@ jobs:
             dist/centrmark-cmk-cli-source.tar.gz
             dist/centrmark-cmk-library-source.tar.gz
             dist/centrmark-cmk-wrappers-source.tar.gz
+
+  publish-renderer-npm:
+    if: startsWith(github.ref, 'refs/tags/')
+    needs:
+      - publish-release
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          registry-url: https://registry.npmjs.org
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - name: Verify tag matches package version
+        shell: bash
+        run: |
+          set -euo pipefail
+          TAG_VERSION="${GITHUB_REF_NAME#cmk-v}"
+          PKG_VERSION="$(node -p "require('./packages/cmk-renderer/package.json').version")"
+          if [[ "$TAG_VERSION" != "$PKG_VERSION" ]]; then
+            echo "Tag version ($TAG_VERSION) does not match @centrmark/cmk-renderer version ($PKG_VERSION)."
+            exit 1
+          fi
+
+      - name: Install dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd packages/cmk-renderer
+          pnpm install --frozen-lockfile
+
+      - name: Build package
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd packages/cmk-renderer
+          pnpm run build
+
+      - name: Publish @centrmark/cmk-renderer
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd packages/cmk-renderer
+          npm publish --provenance --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
