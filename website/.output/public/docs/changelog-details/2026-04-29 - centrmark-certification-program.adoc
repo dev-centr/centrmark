@@ -1,5 +1,0 @@
-= 2026-04-29 – Conformance and certification program
-
-* Documented a CentrMark Conformance Test Suite (CTS) and certification registry concept, aiming to keep behavior consistent across implementations.
-* Defined the standardized contracts the CTS can validate: parsing correctness, canonical AST outputs, determinism, and optional diagnostic behavior.
-* Added guidance for low-cost hosting and how trademark wording should be restricted to registry-approved, spec-version-pinned certifications.

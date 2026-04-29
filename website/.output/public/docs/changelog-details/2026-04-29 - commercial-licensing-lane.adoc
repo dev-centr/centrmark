@@ -1,5 +1,0 @@
-= 2026-04-29 – Commercial licensing lane (alternative terms)
-
-* Added `COMMERCIAL-LICENSE.adoc` to document an optional alternative commercial licensing lane (separate from paid support) for proprietary deployments when the appropriate copyright holders have the needed rights.
-* Linked the new lane from `LICENSING.adoc` and `README.adoc` so the path is discoverable while the default AGPL grant remains unchanged.
-

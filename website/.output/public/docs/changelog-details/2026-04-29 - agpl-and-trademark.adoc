@@ -1,4 +1,0 @@
-= 2026-04-29 – AGPL-3.0 and trademark guidelines
-
-* Adopted the GNU Affero General Public License v3.0 for the repository so distributed derivatives and covered network deployments preserve source-sharing obligations.
-* Documented licensing rationale and naming rules to encourage compatible forks, discourage misleading use of the CentrMark name for incompatible dialects, and point attention to the canonical specification in this project.
