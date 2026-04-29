@@ -1,0 +1,6 @@
+= 2026-04-29 – Antora CMK backend (MVP)
+
+* Added an Antora backend package (`antora/cmk-antora-backend/`) that preprocesses `.cmk` sources into Antora-compatible `.adoc` outputs.
+* The MVP converter currently targets a small subset (frontmatter stripping, headings, void `::toc`, code fences, and basic inline links).
+* Documented how to run the preprocessor so CMK-authored docs can be built with Antora immediately.
+

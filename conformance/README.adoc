@@ -1,0 +1,33 @@
+= Conformance Test Suite (CTS)
+
+The Conformance Test Suite (CTS) is the practical mechanism behind CentrMark’s consistency across implementations.
+
+== Directory intent
+
+* `vectors/` contains input `.cmk` documents grouped by feature area.
+* For each vector, the CTS records expected outputs (for example: canonicalized AST JSON and/or normalized diagnostic classifications).
+
+The precise output formats are intended to be stable and versioned so that implementers can build deterministic tooling.
+
+== Versioning
+
+Each vector is tagged to a spec baseline (for example: `2026-03-14`).
+
+When the spec evolves, the CTS adds new vectors (or updates tagged expectations) instead of silently changing meaning for older results.
+
+== Participation workflow (implementer side)
+
+1. Run the CTS runner against your implementation.
+2. Produce a report artifact that lists:
+   * spec baseline
+   * test case pass/fail
+   * (optional) produced AST samples for the failures
+3. Submit the report for maintainer verification.
+
+== What we still need to implement
+
+The repo will grow a `centrmark-cts` runner (CLI) and CI hooks that:
+
+* execute vectors against an implementation
+* compare output with canonical expectations
+* generate stable machine-readable reports for the registry

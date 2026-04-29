@@ -1,0 +1,10 @@
+= 2026-04-29 – FFI, website, wrappers, and Haskell skeleton
+
+* Added `dlang/centrmark-ffi` as a C-ABI dynamic library exposing reference + optimized canonical AST JSON APIs for wrappers.
+* Added a SolidStart static site under `website/` that includes:
+  * homepage with an example CMK snippet and its canonical AST JSON
+  * examples registry with AST output pages
+  * docs routes backed by repository-published documentation files
+* Added `wrappers/README.adoc` describing wrapper download-and-load strategy that avoids CLI dependencies.
+* Added a Haskell-based AST/spec skeleton under `haskell/` to enable future performance comparisons.
+

@@ -1,0 +1,18 @@
+{
+  "name": "centrmark-ffi",
+  "version": "0.1.0",
+  "authors": ["CentrMark contributors"],
+  "description": "FFI dynamic library exposing CentrMark parsing to other languages",
+  "license": "AGPL-3.0-or-later",
+  "copyright": "Copyright (C) 2026 CentrMark contributors",
+  "targetType": "dynamicLibrary",
+  "targetPath": "bin",
+  "sourcePaths": ["source"],
+  "mainSourceFile": "centrmark-ffi/ffi.d",
+  "dependencies": {
+    "centrmark": {
+      "path": "../centrmark"
+    }
+  }
+}
+

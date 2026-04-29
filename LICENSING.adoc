@@ -1,0 +1,25 @@
+= Licensing and contribution intent
+
+This repository is released under the link:https://www.gnu.org/licenses/agpl-3.0.html[GNU Affero General Public License v3.0] (`AGPL-3.0`). The full legal terms are in the `LICENSE` file.
+
+== Why AGPL
+
+* **Forkable implementations.** Anyone may fork, study, and modify this work. That includes parsers, tooling, and documentation derived from this tree.
+* **Improvements flow back.** If someone distributes a modified version - or, for Affero-covered programs, runs modified versions as a network service - they generally must offer corresponding source under the same license. That keeps enhancements visible to the community instead of disappearing into proprietary-only stacks.
+* **Attention stays with upstream.** Commercial exploitation of *this codebase* still requires compliance with AGPL; it does not create a parallel proprietarized branch without source obligations.
+
+== What copyright cannot do
+
+Copyright and AGPL bind people who copy or derive from *this repository*. They do **not** stop independent teams from writing a clean-room parser or alternate specification from scratch without using our expressive fixed form—that is a limitation of any license.
+
+To reduce confusion and "embrace, extend, extinguish" dynamics around naming and compatibility claims, see link:TRADEMARK.adoc[Trademark guidelines].
+
+== Trademark
+
+The names _CentrMark_, _CMK_, and the `.cmk` file extension are used here to identify this format and project. link:TRADEMARK.adoc[Trademark guidelines] describe permitted descriptive use and how forks should brand materially different variants.
+
+== Alternative commercial licensing lane (no paid support)
+
+If the relevant copyright holders have the necessary rights, they may offer an alternative licensing agreement for specific proprietary deployments that want to avoid AGPL corresponding source obligations.
+
+See link:COMMERCIAL-LICENSE.adoc[Commercial (Alternative) Licensing Lane] for the intended process and limitations.

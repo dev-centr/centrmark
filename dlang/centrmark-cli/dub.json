@@ -1,0 +1,18 @@
+{
+  "name": "centrmark-cli",
+  "version": "0.1.0",
+  "authors": ["CentrMark contributors"],
+  "description": "CLI for parsing CentrMark (.cmk) into canonical JSON AST",
+  "license": "AGPL-3.0-or-later",
+  "copyright": "Copyright (C) 2026 CentrMark contributors",
+  "targetType": "executable",
+  "targetPath": "bin",
+  "mainSourceFile": "source/centrmark-cli/main.d",
+  "dependencies": {
+    "centrmark": {
+      "path": "../centrmark"
+    }
+  },
+  "configurations": []
+}
+

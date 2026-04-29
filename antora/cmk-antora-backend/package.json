@@ -1,0 +1,12 @@
+{
+  "name": "@dev-centr/antora-cmk-backend",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "bin": {
+    "cmk-antora-preprocess": "./bin/cmk-antora-preprocess.js"
+  },
+  "dependencies": {},
+  "description": "Preprocess CentrMark (.cmk) files into Antora-compatible AsciiDoc (.adoc) sources (MVP)."
+}
+

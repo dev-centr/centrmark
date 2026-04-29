@@ -1,0 +1,51 @@
+= Antora CMK Backend (MVP preprocessor)
+
+This package provides a simple preprocessor that lets you author Antora docs in CentrMark (`.cmk`) and converts them into Antora-readable AsciiDoc (`.adoc`) before running Antora.
+
+This is an MVP: the CMK-to-AsciiDoc conversion targets a small subset of syntax (headings, paragraphs, code fences, links, and a few directives).
+
+== Install / run
+
+[source,bash]
+----
+cd antora/cmk-antora-backend
+pnpm install
+pnpm exec cmk-antora-preprocess -- --in <inputDir> --out <outputDir>
+----
+
+== CLI
+
+`cmk-antora-preprocess --in <inputDir> --out <outputDir>`
+
+Expected layout:
+
+* `<inputDir>/modules/<component>/pages/**/*.cmk` and/or `<inputDir>/**/pages/**/*.cmk`
+* The preprocessor preserves directory structure and writes matching `.adoc` outputs.
+
+== MVP translation coverage
+
+The converter currently:
+
+* strips frontmatter blocks delimited by `---`
+* converts `#..######` headings into AsciiDoc section headings (`=..====`)
+* converts fenced code blocks (```lang ... ```) into AsciiDoc source blocks
+* converts void directives `::toc` and `::: toc ...` into `toc::[]`
+* best-effort converts inline links:
+  * `[text](url)` -> `link:url[text]`
+  * `[[url | text]]` -> `link:url[text]`
+
+Everything else is passed through as plain text or ignored for the sake of getting docs rendered.
+
+== Antora integration sketch
+
+1. Convert CMK sources into a generated directory (example: `.antora-cmk-preprocessed/`):
+
+[source,bash]
+----
+pnpm exec cmk-antora-preprocess -- --in docs --out .antora-cmk-preprocessed
+----
+
+2. Point your Antora playbook’s `content.sources.start_path` at `.antora-cmk-preprocessed/` so Antora reads the generated `.adoc` files.
+
+An example playbook lives at `antora/cmk-antora-backend/antora-playbook.example.yml`.
+

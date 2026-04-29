@@ -1,0 +1,13 @@
+{
+  "name": "centrmark",
+  "version": "0.1.0",
+  "authors": ["CentrMark contributors"],
+  "description": "Reference parser + canonical AST for CentrMark (.cmk)",
+  "license": "AGPL-3.0-or-later",
+  "copyright": "Copyright (C) 2026 CentrMark contributors",
+  "targetType": "library",
+  "targetPath": "bin",
+  "dependencies": {},
+  "configurations": []
+}
+

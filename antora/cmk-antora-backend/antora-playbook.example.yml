@@ -1,0 +1,15 @@
+site:
+  title: CentrMark
+  url: https://example.invalid
+
+content:
+  sources:
+    - url: .
+      branches: HEAD
+      start_path: .antora-cmk-preprocessed
+
+ui:
+  bundle:
+    url: https://gitlab.com/antora/antora-ui-default/-/archive/v4.0.0/antora-ui-default-v4.0.0.tar.gz
+    snapshot: true
+
