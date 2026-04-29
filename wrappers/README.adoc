@@ -1,0 +1,53 @@
+= CentrMark wrapper strategy (FFI first)
+
+This repository ships a D reference implementation and a C-ABI FFI dynamic library.
+Language wrappers should call the FFI library directly (no CLI dependency).
+
+== Canonical engine surface
+
+* `dlang/centrmark-ffi` exposes `extern(C)` functions:
+** `cmk_parse_ref(input, len, outLen)` -> canonical AST JSON
+** `cmk_parse_opt(input, len, outLen)` -> canonical AST JSON (optimized serialization)
+** `cmk_free(ptr)` -> free returned JSON
+
+== Download strategy (no system dependencies like `dub`)
+
+For each wrapper package (TypeScript, Python, Julia, Java), the install step should:
+
+1. Detect platform + architecture.
+2. Download the matching prebuilt `centrmark-ffi` shared library artifact from the official release host (recommended: GitHub Releases).
+3. Verify integrity (hash/signature if available).
+4. Load the shared library at runtime and call the exported functions.
+
+This keeps the wrapper small and avoids requiring users to install a D toolchain.
+
+== TypeScript (npm)
+
+Implementation approach:
+
+* Use a Node FFI bridge (e.g. `ffi-napi`) to call `cmk_parse_ref` / `cmk_parse_opt`.
+* Store the downloaded DLL under the package directory (e.g. `~/.cache/centrmark/` or inside the package).
+
+== Python (PyPI)
+
+Implementation approach:
+
+* Use `ctypes` to load the downloaded DLL.
+* Wrap the two exported parse functions and return the JSON string.
+
+== Julia
+
+Implementation approach:
+
+* Use `ccall` with the C ABI signatures to load the shared library.
+
+== Java
+
+Implementation approach:
+
+* Use JNA or JNI to load the shared library from the wrapper distribution.
+* Provide a small `CentrMarkParser` API returning JSON.
+
+== Certification integration
+
+Wrappers should include a small "smoke CTS" script so consumers can quickly verify that the wrapper matches expected outputs for a published subset.

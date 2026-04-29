@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vinxi dev",
-    "build": "vinxi build",
+    "sync:examples": "node ./scripts/sync-examples.mjs",
+    "dev": "pnpm run sync:examples && vinxi dev",
+    "build": "pnpm run sync:examples && vinxi build",
     "start": "vinxi start"
   },
   "dependencies": {

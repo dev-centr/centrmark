@@ -1,0 +1,1 @@
+// Pure block table model::: table cols=3 header=true::: row::: colTruck:::::: colCity:::::: colStatus::::::::: row::: colTaco Nova:::::: colAustin:::::: colActive::::::::: row::: colNested content in a cell:::: quoteThis quote is nested inside a table cell.::::::::: colNashville:::::: colPlanned:::::::::
