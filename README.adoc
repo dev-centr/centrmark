@@ -5,6 +5,10 @@
 
 CentrMark (`.cmk`) is the ideal markup format designed for modern technical writing and developer documentation. It explicitly seeks to address the limitations of Markdown, the syntactic noise of AsciiDoc, and the heavy developer-centric Javascript infiltration introduced by MDX, by providing a completely declarative, clean, and extensible syntax for document blocks and spans.
 
+image:https://github.com/dev-centr/centrmark/actions/workflows/cmk-renderer-ci.yml/badge.svg[CMK Renderer CI,link=https://github.com/dev-centr/centrmark/actions/workflows/cmk-renderer-ci.yml]
+image:https://github.com/dev-centr/centrmark/actions/workflows/cmk-pages.yml/badge.svg[CMK Pages,link=https://github.com/dev-centr/centrmark/actions/workflows/cmk-pages.yml]
+image:https://github.com/dev-centr/centrmark/actions/workflows/cmk-release.yml/badge.svg[CMK Release Builds,link=https://github.com/dev-centr/centrmark/actions/workflows/cmk-release.yml]
+
 toc::[]
 
 == Core Philosophy
