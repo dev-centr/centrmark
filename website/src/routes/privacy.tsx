@@ -1,0 +1,21 @@
+import { Title } from "@solidjs/meta";
+
+export default function Privacy() {
+  return (
+    <main class="layout-reserved max-w-4xl mx-auto min-h-screen pt-24 pb-16">
+      <Title>Privacy Policy - Food Truck Nerdz</Title>
+      <h1 class="text-4xl font-heading font-bold mb-8 text-foreground">Privacy Policy</h1>
+      
+      <section class="prose dark:prose-invert max-w-none font-body text-muted-foreground">
+        <h2>Geolocation Data</h2>
+        <p>Food Truck Nerdz requests IP-based and mobile geolocation to provide distance-based truck routing. This information is processed transiently unless explicitly saved.</p>
+        
+        <h2>Authentication</h2>
+        <p>We use industry-standard bearer token mechanisms. Your passwords are hashed and never stored in plain text.</p>
+        
+        <h2>Third Party Vendors</h2>
+        <p>Telemetry metrics and geographic data routing are securely passed through to Vercel and map rendering providers without identifying personal markers.</p>
+      </section>
+    </main>
+  );
+}

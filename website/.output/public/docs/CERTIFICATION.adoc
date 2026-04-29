@@ -1,0 +1,67 @@
+= CentrMark Conformance and Certification Program
+
+This repository defines CentrMark (`.cmk`) as a standard. To keep implementations consistent (and avoid fragmentation), we maintain a conformance + certification program.
+
+== What we mean by "conformant"
+
+Implementations participate by running the Conformance Test Suite (CTS) against this repository’s published test vectors.
+
+We use two levels:
+
+=== Conforming
+
+Meets the CTS expectations for a stable, publicly described subset (for example: frontmatter, directives, inline directives, and basic block nesting).
+
+=== Certified
+
+Passes the full CTS expectations for the targeted CentrMark spec version (including edge cases in the published grammar semantics).
+
+== What gets standardized (so different implementations agree)
+
+The CTS is designed to validate multiple observable contracts:
+
+* **Parsing correctness:** the implementation accepts valid `.cmk` and rejects invalid forms as specified.
+* **AST contract:** for a given input, the implementation produces the same canonical AST representation (after normalization).
+* **Determinism:** output is stable across runs and platforms.
+* **Diagnostic behavior (optional but encouraged):** error messages and spans match the expected classification.
+
+== Inputs and outputs (the shape of CTS artifacts)
+
+In `conformance/`, we will publish:
+
+* `conformance/vectors/*.cmk`: test documents grouped by feature area
+* expected outputs (for example: canonicalized AST JSON files and/or normalized render tokens)
+
+The key idea is that the test vectors are the source of truth for "what CentrMark means" at a given version.
+
+== Spec version pinning
+
+Each certification result is tied to a specific spec baseline (for example: `2026-03-14`).
+
+This prevents "version drift" where an implementation passes one time and silently regresses later.
+
+== How to participate
+
+1. Fork the CentrMark repo.
+2. Add or update your implementation’s parser/tooling.
+3. Run the CTS runner (to be provided) to generate a report artifact.
+4. Submit your report (PR, or an issue upload) so maintainers can verify.
+
+== Certification registry (the public part)
+
+After verification, maintainers add the implementation to the public registry and enable the approved wording/badges.
+
+The registry lives in this repo under `conformance/` and is designed to be easy to browse and cite.
+
+== Where it’s hosted (minimal domain cost)
+
+Low-cost options in the Dev-Centr ecosystem:
+
+* **GitHub Pages** for the repo (docs site + registry pages)
+* **Dev-Centr site integration** (for example Antora under an existing Dev-Centr domain/subpath)
+
+If you want zero extra domains, the recommended path is a GitHub Pages site backed by this repo.
+
+== "Certified CentrMark" wording (how forks avoid misleading users)
+
+This program is also supported by `TRADEMARK.adoc` guidance: implementations may only use "Certified CentrMark" wording when their entry appears in the registry for the relevant spec version.

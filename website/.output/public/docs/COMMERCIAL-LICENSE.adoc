@@ -1,0 +1,35 @@
+= Commercial (Alternative) Licensing Lane
+
+This repository is primarily licensed under link:LICENSE[GNU Affero General Public License v3.0] (AGPL-3.0).
+
+== Why an alternative license exists
+
+Some organizations want to use CentrMark in proprietary or closed-source products and services without triggering AGPL's corresponding source-sharing obligations.
+
+If we have the necessary rights to do so for the relevant parts of the repository, we may offer an alternative commercial license to those organizations (typically via a license agreement that may include a license fee).
+
+This is a legal licensing lane, not paid support.
+
+== What this does and does not mean
+
+* **Does not** automatically grant additional rights to every reader.
+* **Does** provide a path to obtain alternative terms through a written agreement with the appropriate copyright holders.
+
+Until you receive such an agreement in writing, your use is governed only by the AGPL-3.0 license.
+
+== Eligibility and rights
+
+Alternative licensing is only possible for portions where the relevant maintainers/copyright holders control the rights.
+
+If contributions are made that the maintainers cannot relicense, those contributions may remain AGPL-3.0-only.
+
+== Process (high level)
+
+1. Contact the maintainers with a short description of your intended use (product type, distribution model, whether it is network-facing, and whether you need the AGPL obligations avoided).
+2. The maintainers confirm whether alternative licensing is available for the required parts.
+3. If available, the maintainers provide a commercial license agreement for signature and return you a copy of the executed terms.
+
+== How this helps the standard
+
+The goal is to route meaningful funding and legal clarity into the canonical CentrMark effort while still keeping the baseline standard open and forkable.
+

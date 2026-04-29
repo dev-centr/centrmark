@@ -1,0 +1,6 @@
+= 2026-03-14 – CentrMark Inauguration
+
+* Formalized the initial vision for CentrMark (.cmk), a technical writing markup format built as a clean successor to MDX, Asciidoc, and Markdown.
+* Defined the formal EBNF grammar explicitly codifying Fenced Blockquotes (`((` and `))`), generic numbered lists (`0.`), space indentation overrides, and Flattened Nesting.
+* Created the `informal.adoc` specification to provide readable context and semantic logic behind the rules.
+* Provided `examples/showcase.cmk` to cleanly demonstrate advanced features like `:::` admonitions and Virtual Indentation scoping natively.

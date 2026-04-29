@@ -1,0 +1,95 @@
+= CentrMark (CMK)
+:toc: macro
+:sectnums:
+:sectanchors:
+
+CentrMark (`.cmk`) is the ideal markup format designed for modern technical writing and developer documentation. It explicitly seeks to address the limitations of Markdown, the syntactic noise of AsciiDoc, and the heavy developer-centric Javascript infiltration introduced by MDX, by providing a completely declarative, clean, and extensible syntax for document blocks and spans.
+
+toc::[]
+
+== Core Philosophy
+
+1. **Familiar Base**: The 90% use case remains pure Markdown (`#` headers, `*` bold, `[]()` links) because it is ubiquitous, highly readable, and typed entirely with common keyboard keys without excessive shifting.
+2. **Native Extensibility**: By avoiding HTML tags and React JSX (from MDX), CentrMark keeps documentation distinct from code. It uses a uniform Directive syntax for structural and dynamic features (like Confluence macros).
+3. **SDL-Powered**: CentrMark abandons YAML frontmatter and JSON configuration, natively embracing *SDL (Simple Declarative Language)* for strongly typed, unquoted configuration of frontmatter and component properties.
+4. **Context-Sensitive Blocks**: Like Python and Markdown, CentrMark is context-sensitive to reduce noise. Block hierarchies are managed visually with colons (`:::`) preserving pure text flow to the human eye.
+5. **Human and Machine Readability**: Structuring is parsable directly into unified ASTs mapping perfectly to component frameworks or static site generators.
+
+== Why Not Markdown?
+Traditional Markdown is too weak for technical writing. It lacks a standard Table of Contents, native support for tabs, admonitions, file transclusions, definition lists, or standardized cross-links. Markdown forces you into using fragile HTML fallback or proprietary markdown flavors.
+
+== Why Not AsciiDoc?
+AsciiDoc is robust but suffers from extreme syntax noisiness. The proliferation of `====`, `----`, `....`, `[source, type]`, and obscure attribute scoping make simple documents look unappealing in plaintext, slowing down the writing process.
+
+== Why Not MDX?
+MDX solves extensibility by injecting JSX and Javascript module importing into documents (`import { Button } from './Button'`). What was once text becomes an engineering artifact. Technical writers shouldn't be writing React code to render a warning banner.
+
+== The CentrMark Answer
+CentrMark defines three core mechanisms that extend Markdown capabilities seamlessly:
+* **The Void Directive:** `::toc` – self-closing, single-line functions or elements without content.
+* **The Block Directive:** `::: tabs` – container elements that hold complex markdown or other directives.
+* **The Inline Directive:** `@badge[color="red"](New)` – text-span level enrichments.
+
+For detailed breakdown, please see the `spec/` folder.
+
+== How CentrMark Improves Documentation (Simple Breakdown)
+
+Theo’s question is exactly the one we should answer up front: “how does this solve problems?”
+
+CentrMark improves documentation by replacing tool-specific syntax hacks (Markdown extensions, AsciiDoc macro noise, and MDX/JS injection) with a small set of declarative primitives that map into a canonical AST. That gives you consistent behavior across implementations and keeps content focused on meaning.
+
+[cols="1,1,1,1",options="header"]
+|===
+| Capability | Markdown | AsciiDoc | CentrMark
+| Tabs / multi-pane content | usually HTML hacks or custom components | possible, but syntax becomes noisy | `::: tabs` + `::: tab`
+| Void elements (like TOC) | not standardized | verbose and tool-specific | `::toc [depth=...]` (void directive)
+| Admonitions / warnings | usually custom HTML blocks | attribute-heavy macros | `::: warning [title="..."] ... :::`
+| Extensibility without MDX | MDX pulls in JSX/JS into text | macro systems vary | Void/Block/Inline directives map to a stable AST
+| Cross-source references | `link` vs `xref` varies by tool | implementation-dependent | Semantic Link `[[url | text]]` (one syntax for both)
+|===
+
+== Cross-source references (xref vs link, without choosing)
+
+You write a Semantic Link once: `[[url | text]]`.
+
+At build/render time:
+
+* if `url` targets a known internal page/anchor in any content source, it behaves like an xref (jump + navigation)
+* otherwise it behaves like a normal external link
+
+Writers don’t need to remember “use xref here, link there”.
+
+== License
+
+CentrMark materials in this repository are licensed under the link:https://www.gnu.org/licenses/agpl-3.0.html[GNU Affero General Public License v3.0] (`AGPL-3.0`). See `LICENSE`, `NOTICE`, link:LICENSING.adoc[Licensing intent], and link:TRADEMARK.adoc[Trademark guidelines].
+
+== Certification and Conformance
+
+To keep CentrMark behavior consistent across independent implementations, this repository also defines a link:CERTIFICATION.adoc[Conformance and Certification Program] (CTS + registry + approved wording).
+
+== MVP Reference Implementation (D)
+
+This repo includes an initial reference implementation in D:
+
+* `dlang/centrmark`: parser + canonical AST JSON export (`parseCmk`, `toJsonCanonical`)
+* `dlang/centrmark-cli`: `centrmark-cli parse ...` command to emit canonical AST JSON
+
+Build locally with `dub`:
+
+[source,powershell]
+----
+cd dlang\\centrmark
+dub build
+
+cd ..\\centrmark-cli
+dub build
+----
+
+== Commercial licensing lane (alternative terms)
+
+Separately from sponsorship or paid support, this project may offer an alternative commercial licensing lane (via written agreement) for proprietary deployments, if maintainers/copyright holders have the required rights.
+
+See link:LICENSING.adoc[Licensing intent] and link:COMMERCIAL-LICENSE.adoc[Commercial (Alternative) Licensing Lane].
+
+== Changelog
+See the link:changelog.adoc[Changelog] for an iteration history of the specification.

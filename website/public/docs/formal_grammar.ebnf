@@ -1,0 +1,105 @@
+(* 
+  CentrMark (.cmk) Formal Grammar
+  Written in Extended Backus-Naur Form (EBNF)
+
+  Note: Like Markdown and Python, CentrMark is completely context-sensitive in practice 
+  due to varying lengths of fences (`` ``` ``, `:::`) and indentation depths for lists. 
+  This EBNF represents the structural idealized grammar.
+*)
+
+document = [ frontmatter ] , { block } ;
+
+(* 1. Frontmatter (Powered by SDL) *)
+frontmatter = "---" , newline , sdl_content , "---" , newline ;
+
+(* 2. Blocks *)
+block = empty_line 
+      | header 
+      | list 
+      | code_block 
+      | blockquote 
+      | definition_list 
+      | block_directive 
+      | void_directive 
+      | paragraph ;
+
+empty_line = { space } , newline ;
+
+(* 2.1 Standard Markdown Blocks *)
+header = ( "#" | "##" | "###" | "####" | "#####" | "######" ) , space , inline_text , newline ;
+
+paragraph = inline_text , { newline_not_followed_by_block_marker , inline_text } , newline ;
+
+blockquote = blockquote_fence , newline , { block } , blockquote_fence , newline ;
+
+blockquote_fence = "((" | "))" ;
+(* Context-Sensitivity Rule: Directional fences inherently support nesting based on open/close sequences. *)
+
+code_block = code_fence , [ space , language_identifier ] , newline ,
+             { any_character_except_closing_fence } , newline ,
+             code_fence , newline ;
+
+code_fence = "```" , { "`" } ;
+
+(* 2.2 Lists *)
+list = { list_item } ;
+
+list_item = [ indent ] , ( unordered_marker | ordered_marker ) , space , inline_text , newline , { list_continuation_block } ;
+unordered_marker = "-" | "*" | "+" ;
+ordered_marker = ( digit , { digit } , "." ) | "0." ;
+list_continuation_block = ( ( [ indent ] , list_continuation_marker , newline , block ) | ( indent , block ) ) ;
+list_continuation_marker = "+" ;
+
+definition_list = { definition_item } ;
+definition_item = "~" , space , inline_text , newline , 
+                  indent , inline_text , { newline , indent , inline_text } , newline ;
+
+(* 2.3 CentrMark Directives *)
+void_directive = "::" , [ space ] , identifier , [ space , "[" , sdl_properties_{inline} , "]" ] , newline ;
+
+block_directive = directive_fence , [ space ] , identifier , [ space , "[" , sdl_properties_{inline} , "]" ] , newline ,
+                  { block } ,
+                  directive_fence , newline ;
+
+directive_fence = ":::" , { ":" } ;
+(* 
+  Context-Sensitivity Rule: The closing `directive_fence` length must exactly 
+  equal the opening `directive_fence` length to allow nesting.
+*)
+
+(* 3. Inline Elements *)
+inline_text = { 
+    text_char 
+  | emphasis 
+  | strong 
+  | code_span 
+  | link 
+  | semantic_link 
+  | inline_directive 
+  | variable_ref 
+  | escape_sequence 
+} ;
+
+emphasis = ( "_" , { text_char } , "_" ) | ( "*" , { text_char } , "*" ) ;
+strong = ( "__" , { text_char } , "__" ) | ( "**" , { text_char } , "**" ) ;
+code_span = "`" , { text_char } , "`" ;
+
+link = "[" , inline_text , "]" , "(" , url , ")" ;
+
+semantic_link = "[[" , url , [ space , "|" , space , inline_text ] , "]]" ;
+variable_ref = "${" , identifier , "}" ;
+
+(* 3.1 Inline Directives *)
+inline_directive = "@" , identifier , [ "[" , sdl_properties_{inline} , "]" ] , [ "(" , inline_text , ")" ] ;
+
+(* 4. Primitives *)
+identifier = letter , { letter | digit | "-" | "_" } ;
+text_char = ? any unicode character except structural markers ? ;
+space = " " | "\t" ;
+newline = "\r\n" | "\n" | "\r" ;
+newline_not_followed_by_block_marker = newline , ? negative lookahead for block markers like #, :::, ::, -, etc ? ;
+indent = space , space , { space } ;
+
+(* 5. SDL Types (External Grammar Reference) *)
+sdl_content = ? valid multiline Simple Declarative Language payload ? ;
+sdl_properties_{inline} = ? valid single-line SDL object (without braces) ? ;

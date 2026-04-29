@@ -32,5 +32,85 @@ CentrMark defines three core mechanisms that extend Markdown capabilities seamle
 
 For detailed breakdown, please see the `spec/` folder.
 
+== How CentrMark Improves Documentation (Simple Breakdown)
+
+Theo’s question is exactly the one we should answer up front: “how does this solve problems?”
+
+CentrMark improves documentation by replacing tool-specific syntax hacks (Markdown extensions, AsciiDoc macro noise, and MDX/JS injection) with a small set of declarative primitives that map into a canonical AST. That gives you consistent behavior across implementations and keeps content focused on meaning.
+
+[cols="1,1,1,1",options="header"]
+|===
+| Capability | Markdown | AsciiDoc | CentrMark
+| Tabs / multi-pane content | usually HTML hacks or custom components | possible, but syntax becomes noisy | `::: tabs` + `::: tab`
+| Void elements (like TOC) | not standardized | verbose and tool-specific | `::toc [depth=...]` (void directive)
+| Admonitions / warnings | usually custom HTML blocks | attribute-heavy macros | `::: warning [title="..."] ... :::`
+| Extensibility without MDX | MDX pulls in JSX/JS into text | macro systems vary | Void/Block/Inline directives map to a stable AST
+| Cross-source references | `link` vs `xref` varies by tool | implementation-dependent | Semantic Link `[[url | text]]` (one syntax for both)
+|===
+
+== Cross-source references (xref vs link, without choosing)
+
+You write a Semantic Link once: `[[url | text]]`.
+
+At build/render time:
+
+* if `url` targets a known internal page/anchor in any content source, it behaves like an xref (jump + navigation)
+* otherwise it behaves like a normal external link
+
+Writers don’t need to remember “use xref here, link there”.
+
+== License
+
+CentrMark materials in this repository are licensed under the link:https://www.gnu.org/licenses/agpl-3.0.html[GNU Affero General Public License v3.0] (`AGPL-3.0`). See `LICENSE`, `NOTICE`, link:LICENSING.adoc[Licensing intent], and link:TRADEMARK.adoc[Trademark guidelines].
+
+== Certification and Conformance
+
+To keep CentrMark behavior consistent across independent implementations, this repository also defines a link:CERTIFICATION.adoc[Conformance and Certification Program] (CTS + registry + approved wording).
+
+== MVP Reference Implementation (D)
+
+This repo includes an initial reference implementation in D:
+
+* `dlang/centrmark`: parser + canonical AST JSON export (`parseCmk`, `toJsonCanonical`)
+* `dlang/centrmark-cli`: `centrmark-cli parse ...` command to emit canonical AST JSON
+
+== FFI surface for wrappers (no CLI dependency)
+
+* `dlang/centrmark-ffi`: C-ABI dynamic library exposing:
+** `cmk_parse_ref(input, len, outLen)` -> canonical AST JSON
+** `cmk_parse_opt(input, len, outLen)` -> canonical AST JSON (optimized)
+** `cmk_free(ptr)` -> free returned JSON
+
+Wrappers should call the FFI directly (per `wrappers/README.adoc`) instead of shelling out to a CLI.
+
+Build locally with `dub`:
+
+[source,powershell]
+----
+cd dlang\\centrmark
+dub build
+
+cd ..\\centrmark-cli
+dub build
+----
+
+== Website
+
+The documentation + example registry site is in `website/`.
+
+== Antora CMK backend
+
+If you want to publish Antora documentation authored in CentrMark (`.cmk`), this repo includes an MVP backend/preprocessor at `antora/cmk-antora-backend/`.
+
+== Wrappers
+
+See `wrappers/README.adoc` for the MVP download-and-load strategy per language.
+
+== Commercial licensing lane (alternative terms)
+
+Separately from sponsorship or paid support, this project may offer an alternative commercial licensing lane (via written agreement) for proprietary deployments, if maintainers/copyright holders have the required rights.
+
+See link:LICENSING.adoc[Licensing intent] and link:COMMERCIAL-LICENSE.adoc[Commercial (Alternative) Licensing Lane].
+
 == Changelog
 See the link:changelog.adoc[Changelog] for an iteration history of the specification.

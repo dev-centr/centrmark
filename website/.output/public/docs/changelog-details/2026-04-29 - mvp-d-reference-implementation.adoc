@@ -1,0 +1,6 @@
+= 2026-04-29 – MVP D reference implementation
+
+* Added a D library (`dlang/centrmark`) that parses a CentrMark MVP subset into a tagged AST and can export canonical JSON.
+* Added a D CLI (`dlang/centrmark-cli`) with a `parse` subcommand for turning `.cmk` input into canonical AST JSON.
+* Added debug-mode support (`--no-json`) to validate parse termination during initial development.
+

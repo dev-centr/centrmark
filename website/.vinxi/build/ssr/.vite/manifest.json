@@ -1,0 +1,160 @@
+{
+  "_components-DYk6YKKa.js": {
+    "file": "assets/components-DYk6YKKa.js",
+    "name": "components",
+    "imports": [
+      "_routing-DSdRzhF_.js"
+    ]
+  },
+  "_index-Dps0aSs2.js": {
+    "file": "assets/index-Dps0aSs2.js",
+    "name": "index"
+  },
+  "_routing-DSdRzhF_.js": {
+    "file": "assets/routing-DSdRzhF_.js",
+    "name": "routing"
+  },
+  "src/routes/attributions.tsx?pick=default&pick=$css": {
+    "file": "attributions.js",
+    "name": "attributions",
+    "src": "src/routes/attributions.tsx?pick=default&pick=$css",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_index-Dps0aSs2.js"
+    ]
+  },
+  "src/routes/contact.tsx?pick=default&pick=$css": {
+    "file": "contact.js",
+    "name": "contact",
+    "src": "src/routes/contact.tsx?pick=default&pick=$css",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_index-Dps0aSs2.js"
+    ]
+  },
+  "src/routes/docs/[slug]/index.tsx?pick=default&pick=$css": {
+    "file": "index2.js",
+    "name": "index",
+    "src": "src/routes/docs/[slug]/index.tsx?pick=default&pick=$css",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_index-Dps0aSs2.js",
+      "_routing-DSdRzhF_.js"
+    ]
+  },
+  "src/routes/docs/index.tsx?pick=default&pick=$css": {
+    "file": "index.js",
+    "name": "index",
+    "src": "src/routes/docs/index.tsx?pick=default&pick=$css",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_index-Dps0aSs2.js",
+      "_components-DYk6YKKa.js",
+      "_routing-DSdRzhF_.js"
+    ]
+  },
+  "src/routes/examples/[slug]/ast/index.tsx?pick=default&pick=$css": {
+    "file": "index4.js",
+    "name": "index",
+    "src": "src/routes/examples/[slug]/ast/index.tsx?pick=default&pick=$css",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_index-Dps0aSs2.js",
+      "_routing-DSdRzhF_.js"
+    ]
+  },
+  "src/routes/examples/[slug]/index.tsx?pick=default&pick=$css": {
+    "file": "index5.js",
+    "name": "index",
+    "src": "src/routes/examples/[slug]/index.tsx?pick=default&pick=$css",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_index-Dps0aSs2.js",
+      "_routing-DSdRzhF_.js"
+    ]
+  },
+  "src/routes/examples/index.tsx?pick=default&pick=$css": {
+    "file": "index3.js",
+    "name": "index",
+    "src": "src/routes/examples/index.tsx?pick=default&pick=$css",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_index-Dps0aSs2.js",
+      "_components-DYk6YKKa.js",
+      "_routing-DSdRzhF_.js"
+    ]
+  },
+  "src/routes/index.tsx?pick=default&pick=$css": {
+    "file": "index6.js",
+    "name": "index",
+    "src": "src/routes/index.tsx?pick=default&pick=$css",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_index-Dps0aSs2.js"
+    ]
+  },
+  "src/routes/privacy.tsx?pick=default&pick=$css": {
+    "file": "privacy.js",
+    "name": "privacy",
+    "src": "src/routes/privacy.tsx?pick=default&pick=$css",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_index-Dps0aSs2.js"
+    ]
+  },
+  "src/routes/terms.tsx?pick=default&pick=$css": {
+    "file": "terms.js",
+    "name": "terms",
+    "src": "src/routes/terms.tsx?pick=default&pick=$css",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_index-Dps0aSs2.js"
+    ]
+  },
+  "virtual:$vinxi/handler/ssr": {
+    "file": "ssr.js",
+    "name": "ssr",
+    "src": "virtual:$vinxi/handler/ssr",
+    "isEntry": true,
+    "imports": [
+      "_index-Dps0aSs2.js",
+      "_components-DYk6YKKa.js",
+      "_routing-DSdRzhF_.js"
+    ],
+    "dynamicImports": [
+      "src/routes/attributions.tsx?pick=default&pick=$css",
+      "src/routes/attributions.tsx?pick=default&pick=$css",
+      "src/routes/contact.tsx?pick=default&pick=$css",
+      "src/routes/contact.tsx?pick=default&pick=$css",
+      "src/routes/docs/index.tsx?pick=default&pick=$css",
+      "src/routes/docs/index.tsx?pick=default&pick=$css",
+      "src/routes/docs/[slug]/index.tsx?pick=default&pick=$css",
+      "src/routes/docs/[slug]/index.tsx?pick=default&pick=$css",
+      "src/routes/examples/index.tsx?pick=default&pick=$css",
+      "src/routes/examples/index.tsx?pick=default&pick=$css",
+      "src/routes/examples/[slug]/ast/index.tsx?pick=default&pick=$css",
+      "src/routes/examples/[slug]/ast/index.tsx?pick=default&pick=$css",
+      "src/routes/examples/[slug]/index.tsx?pick=default&pick=$css",
+      "src/routes/examples/[slug]/index.tsx?pick=default&pick=$css",
+      "src/routes/index.tsx?pick=default&pick=$css",
+      "src/routes/index.tsx?pick=default&pick=$css",
+      "src/routes/privacy.tsx?pick=default&pick=$css",
+      "src/routes/privacy.tsx?pick=default&pick=$css",
+      "src/routes/terms.tsx?pick=default&pick=$css",
+      "src/routes/terms.tsx?pick=default&pick=$css"
+    ],
+    "css": [
+      "assets/ssr-BraCDX5r.css"
+    ]
+  }
+}

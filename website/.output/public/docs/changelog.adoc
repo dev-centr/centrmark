@@ -1,0 +1,19 @@
+= Changelog
+
+This changelog acts as a centralized historical record of the evolution of the CentrMark standard over time.
+
+== 2026-04-29 – AGPL-3.0 and trademark guidelines
+
+* Added `LICENSE` (GNU Affero General Public License v3.0), `NOTICE`, link:LICENSING.adoc[Licensing intent], and link:TRADEMARK.adoc[Trademark guidelines] to protect forkable implementation while steering compatibility and attribution toward this repository.
+* Added `CERTIFICATION.adoc` and `conformance/` documentation to support a CentrMark conformance test suite + certification registry.
+* See link:changelog-details/2026-04-29 - agpl-and-trademark.adoc[Detailed changelog].
+* See link:changelog-details/2026-04-29 - centrmark-certification-program.adoc[Detailed changelog].
+* Added `COMMERCIAL-LICENSE.adoc` as an optional alternative commercial licensing lane (no paid support) for proprietary deployments where appropriate copyright rights exist.
+* See link:changelog-details/2026-04-29 - commercial-licensing-lane.adoc[Detailed changelog].
+* Added an initial D reference implementation (library + CLI) that parses a CentrMark subset and emits canonical AST JSON.
+* See link:changelog-details/2026-04-29 - mvp-d-reference-implementation.adoc[Detailed changelog].
+
+== 2026-03-14 – CentrMark Inauguration
+
+* Initial formal spec, EBNF grammar layout, and feature showcase (fenced blockquotes, generic list auto-increments).
+* See link:changelog-details/2026-03-14 - centrmark-inauguration.adoc[Detailed changelog].

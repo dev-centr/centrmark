@@ -1,0 +1,31 @@
+= Food Truck Nerdz - SolidStart Implementation
+
+This is the primary web application for Food Truck Nerdz, built with SolidStart and Solid-UI.
+
+== Features
+
+* **3D Hero**: Interactive metallic food truck model built with Three.js.
+* **Geolocated Search**: Automatic city detection for instant local truck finding.
+* **Bespoke Design**: Muted "Slate & Copper" color palette with modern typography (Outfit & Hanken Grotesk).
+* **Dual-Mode Spacing**: Spacious marketing homepage and reserved, dense web app layouts.
+
+== Getting Started
+
+Ensure you are using `pnpm` in the root of the monorepo.
+
+[source,bash]
+----
+pnpm install
+pnpm dev
+----
+
+== Deployment
+
+Deployed to Vercel via GitHub Actions.
+
+* **Project URL**: link:https://foodtrucknerdz.com[foodtrucknerdz.com]
+* **Documentation**: link:../docs/modules/ROOT/pages/index.adoc[Local Docs Index]
+
+== Shared Assets
+
+Design tokens and the 3D model engine are located in the `shared/` workspace directory.
