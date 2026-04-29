@@ -57,6 +57,9 @@ Use focused showcase samples instead of one large mixed document:
 - `showcase/05-edge-cases.cmk`
 - `showcase/06-includes-and-reuse.cmk`
 
+These are extension-focused fixture files for syntax/highlighting behavior.
+Canonical project examples live in `examples/*.cmk` at the repository root.
+
 ## Color customization by depth
 
 The extension emits semantic token types:

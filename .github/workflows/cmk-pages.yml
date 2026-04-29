@@ -5,6 +5,7 @@ on:
     branches:
       - main
     paths:
+      - "examples/**"
       - "haskell/cmk/**"
       - "haskell/README.adoc"
       - "wrappers/**"
@@ -32,8 +33,9 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          mkdir -p _site/showcase _site/sources
+          mkdir -p _site/examples _site/showcase _site/sources
 
+          cp -R examples/. _site/examples/
           cp -R tools/vscode-cmk/showcase/. _site/showcase/
           cp -R haskell/cmk/. _site/sources/
           cp haskell/README.adoc _site/haskell-README.adoc
@@ -55,6 +57,11 @@ jobs:
           <body>
             <h1>CentrMark CMK Pages</h1>
             <p>This site is built from repository CMK assets.</p>
+            <h2>Canonical Examples</h2>
+            <ul>
+              <li><a href="./examples/showcase.cmk">showcase.cmk</a></li>
+              <li><a href="./examples/literate_programming.cmk">literate_programming.cmk</a></li>
+            </ul>
             <h2>Showcase</h2>
             <ul>
               <li><a href="./showcase/README.md">Showcase README</a></li>
