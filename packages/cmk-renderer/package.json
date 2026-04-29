@@ -1,6 +1,6 @@
 {
   "name": "@centrmark/cmk-renderer",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": false,
   "type": "commonjs",
   "main": "./dist/index.js",
