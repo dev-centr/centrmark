@@ -9,7 +9,7 @@ image:https://github.com/dev-centr/centrmark/actions/workflows/cmk-renderer-ci.y
 image:https://github.com/dev-centr/centrmark/actions/workflows/cmk-pages.yml/badge.svg[CMK Pages,link=https://github.com/dev-centr/centrmark/actions/workflows/cmk-pages.yml]
 image:https://github.com/dev-centr/centrmark/actions/workflows/cmk-release.yml/badge.svg[CMK Release Builds,link=https://github.com/dev-centr/centrmark/actions/workflows/cmk-release.yml]
 
-toc::[]
+toc:: []
 
 == Core Philosophy
 
@@ -31,7 +31,7 @@ MDX solves extensibility by injecting JSX and Javascript module importing into d
 == The CentrMark Answer
 CentrMark defines three core mechanisms that extend Markdown capabilities seamlessly:
 
-* *The Void Directive*: `::toc` – self-closing, single-line functions or elements without content.
+* *The Void Directive*: `:: toc` – self-closing, single-line functions or elements without content.
 * *The Block Directive*: `::: tabs` – container elements that hold complex markdown or other directives.
 * *The Inline Directive*: `@badge[color="red"](New)` – text-span level enrichments.
 
@@ -47,10 +47,10 @@ CentrMark improves documentation by replacing tool-specific syntax hacks (Markdo
 |===
 | Capability | Markdown | AsciiDoc | CentrMark
 | Tabs / multi-pane content | usually HTML hacks or custom components | possible, but syntax becomes noisy | `::: tabs` + `::: tab`
-| Void elements (like TOC) | not standardized | verbose and tool-specific | `::toc [depth=...]` (void directive)
+| Void elements (like TOC) | not standardized | verbose and tool-specific | `:: toc [depth=...]` (void directive)
 | Admonitions / warnings | usually custom HTML blocks | attribute-heavy macros | `::: warning [title="..."] ... :::`
 | Extensibility without MDX | MDX pulls in JSX/JS into text | macro systems vary | Void/Block/Inline directives map to a stable AST
-| Cross-source references | `link` vs `xref` varies by tool | implementation-dependent | Semantic Link `[[url | text]]` (one syntax for both)
+| Cross-source references | `link` vs `xref` varies by tool | implementation-dependent | Semantic Link `[[url \| text]]` (one syntax for both)
 |===
 
 == Cross-source references (xref vs link, without choosing)
