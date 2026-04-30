@@ -163,6 +163,57 @@ Be careful configuring this setting, it can exponentially increase latency.
 :::
 ----
 
+=== 3.6 Typed Checklists
+Checklists are Block Directives whose body is parsed as bracket-marked task lines.
+
+Syntax:
+[source,centrmark]
+----
+::: checklist [type="default"]
+[ ] Unchecked
+[x] Done
+[-] Blocked or pending
+:::
+----
+
+Default markers:
+
+* `[ ]` unchecked
+* `[x]` complete
+* `[-]` blocked/pending
+
+`type` allows renderers to apply alternate semantics and visuals while preserving the same bracket-marker syntax. Recommended built-in types are `default`, `progress`, `decision`, and `risk`.
+
+=== 3.7 Diagram Blocks
+Diagrams are represented with a `diagram` Block Directive. The body contains source text (for example Mermaid, PlantUML, or Graphviz DOT), or `src` can reference a pre-rendered asset.
+
+[source,centrmark]
+----
+::: diagram [format="mermaid"]
+flowchart TD
+  A[Start] --> B{Ready?}
+  B -->|yes| C[Ship]
+  B -->|no| D[Revise]
+:::
+----
+
+Supported-by-default diagram formats in the reference renderer:
+
+* `mermaid`
+* `plantuml`
+* `graphviz` / `dot`
+
+=== 3.8 Animation Blocks
+Animation assets are represented with an `animation` Block Directive and format metadata.
+
+[source,centrmark]
+----
+::: animation [format="lottie" src="/animations/intro.json" autoplay=true loop=true]
+:::
+----
+
+`lottie` is the recommended default format for structured, scriptable animation payloads. Renderers may also support media formats such as `gif`, `mp4`, or `webm`.
+
 == 4. Advanced Markdown Enhancements
 
 === 4.1 Definition Lists

@@ -2,6 +2,14 @@
 
 This changelog acts as a centralized historical record of the evolution of the CentrMark standard over time.
 
+== 2026-04-30 – Typed checklists, diagrams, and animations
+
+* Added typed checklist semantics (`::: checklist [type="..."]`) with bracket markers and default `[-]` blocked/pending behavior.
+* Added diagram and animation directive profiles in the language spec and canonical examples.
+* Implemented first-party renderer support for `checklist`, `diagram`, and `animation` directives in `@centrmark/cmk-renderer`.
+* Bumped `@centrmark/cmk-renderer` to `0.2.0`.
+* See link:changelog-details/2026-04-30 - typed-checklists-diagrams-animations.adoc[Detailed changelog].
+
 == 2026-04-29 – AGPL-3.0 and trademark guidelines
 
 * Added `LICENSE` (GNU Affero General Public License v3.0), `NOTICE`, link:LICENSING.adoc[Licensing intent], and link:TRADEMARK.adoc[Trademark guidelines] to protect forkable implementation while steering compatibility and attribution toward this repository.

@@ -103,3 +103,18 @@ indent = space , space , { space } ;
 (* 5. SDL Types (External Grammar Reference) *)
 sdl_content = ? valid multiline Simple Declarative Language payload ? ;
 sdl_properties_{inline} = ? valid single-line SDL object (without braces) ? ;
+
+(* 6. Conventional Built-in Block Directive Profiles *)
+checklist_block = directive_fence , [ space ] , "checklist" , [ space , "[" , sdl_properties_{inline} , "]" ] , newline ,
+                  { checklist_item_line } ,
+                  directive_fence , newline ;
+checklist_item_line = "[" , checklist_marker , "]" , space , inline_text , newline ;
+checklist_marker = " " | "x" | "X" | "-" | "/" | identifier ;
+
+diagram_block = directive_fence , [ space ] , "diagram" , [ space , "[" , sdl_properties_{inline} , "]" ] , newline ,
+                { block } ,
+                directive_fence , newline ;
+
+animation_block = directive_fence , [ space ] , "animation" , [ space , "[" , sdl_properties_{inline} , "]" ] , newline ,
+                  { block } ,
+                  directive_fence , newline ;

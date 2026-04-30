@@ -1,0 +1,42 @@
+---
+title "Diagrams"
+author {
+  name "CentrMark Team"
+  role "Documentation"
+}
+tags "example", "diagram", "mermaid", "plantuml", "graphviz"
+version 1.0.0
+status "Final"
+---
+
+# Diagrams
+
+CentrMark diagrams use a dedicated block directive with a `format` property. The same outer shape works for common text-based diagram syntaxes.
+
+## Mermaid
+
+::: diagram [format="mermaid"]
+flowchart TD
+  A[Author] --> B{Renderer}
+  B -->|html| C[Web Preview]
+  B -->|json| D[AST Fixture]
+:::
+
+## PlantUML
+
+::: diagram [format="plantuml"]
+@startuml
+actor User
+User -> Renderer: render(diagram)
+Renderer --> User: HTML
+@enduml
+:::
+
+## Graphviz (DOT)
+
+::: diagram [format="graphviz"]
+digraph Pipeline {
+  parse -> ir;
+  ir -> html;
+}
+:::

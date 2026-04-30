@@ -4,6 +4,7 @@
 !/.gitignore
 !/.github/
 !/antora/
+!/changelog-details/
 !/dlang/
 !/docs/
 !/examples/
@@ -17,6 +18,7 @@
 # Re-allow contents under allow-listed roots
 !/.github/**
 !/antora/**
+!/changelog-details/**
 !/dlang/**
 !/docs/**
 !/examples/**

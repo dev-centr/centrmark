@@ -1,0 +1,29 @@
+---
+title "Animations"
+author {
+  name "CentrMark Team"
+  role "Documentation"
+}
+tags "example", "animation", "lottie", "media"
+version 1.0.0
+status "Final"
+---
+
+# Animations
+
+Animation payloads are represented with the `animation` block directive. Lottie is the recommended default because it stays structured and scriptable.
+
+## Lottie JSON
+
+::: animation [format="lottie" src="/animations/intro.json" autoplay=true loop=true controls=true]
+:::
+
+## Animated GIF
+
+::: animation [format="gif" src="/animations/loading.gif" alt="Loading indicator"]
+:::
+
+## WebM clip
+
+::: animation [format="webm" src="/animations/walkthrough.webm" autoplay=true loop=false controls=true]
+:::

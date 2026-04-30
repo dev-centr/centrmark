@@ -36,3 +36,35 @@ test("renders HTML from literate-programming AST fixture", async () => {
   assert.ok(html.includes("<article class=\"cmk-render\">"));
   assert.ok(html.includes("<p>") || html.includes("<h1>"));
 });
+
+test("renders specialized checklist, diagram, and animation directives", () => {
+  const ast = {
+    frontmatter: { raw: "" },
+    blocks: [
+      {
+        kind: "BlockDirective",
+        name: "checklist",
+        propsRaw: "type=\"default\"",
+        body: [{ kind: "Paragraph", inlines: [{ kind: "Text", text: "[-] Deferred item" }] }]
+      },
+      {
+        kind: "BlockDirective",
+        name: "diagram",
+        propsRaw: "format=\"mermaid\"",
+        body: [{ kind: "Paragraph", inlines: [{ kind: "Text", text: "flowchart TD\nA --> B" }] }]
+      },
+      {
+        kind: "BlockDirective",
+        name: "animation",
+        propsRaw: "format=\"lottie\" src=\"/animations/demo.json\" autoplay=true loop=true controls=true",
+        body: []
+      }
+    ]
+  };
+
+  const html = renderIRToHtml(astJsonToRenderIR(ast));
+  assert.ok(html.includes("data-cmk-checklist-type=\"default\""));
+  assert.ok(html.includes("text-decoration: line-through"));
+  assert.ok(html.includes("class=\"mermaid\""));
+  assert.ok(html.includes("<lottie-player"));
+});

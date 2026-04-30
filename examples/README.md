@@ -9,7 +9,9 @@ This directory holds **one `.cmk` file per major topic** so parsers, renderers, 
 | `lists.cmk` | Bullets, ordered lists, continuations (`+`) |
 | `directives.cmk` | Inline directives and block admonitions |
 | `tabs.cmk` | `::: tabs` / `::: tab` for multi-language or multi-tool snippets |
-| `checklists.cmk` | `::: checklist` |
+| `checklists.cmk` | Typed checklists (`::: checklist [type=...]`) |
+| `diagrams.cmk` | Diagram blocks (`::: diagram`) with Mermaid / PlantUML / Graphviz |
+| `animations.cmk` | Animation blocks (`::: animation`) with Lottie/GIF/video metadata |
 | `images.cmk` | `@image[...](...)` |
 | `semantic-links.cmk` | Semantic links (`[[` … `]]`) and definition lists (`~`) |
 | `structural-tables.cmk` | `::: table` layout |

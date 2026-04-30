@@ -11,10 +11,21 @@ status "Final"
 
 # Checklists
 
-Checklists use a single indicator family so state is visually unambiguous. In this example, `x` means “done” and `X` means “blocked/pending”.
+Checklist markers are written in brackets. In the default style, `[ ]` is unchecked, `[x]` is done, and `[-]` is blocked/pending.
 
-::: checklist [indicator="x"]
-x Write the specification
-X Add conformance coverage
-x Update the website examples
+## Default checklist
+
+::: checklist [type="default"]
+[ ] Write the specification draft
+[x] Add conformance coverage
+[-] Update website examples after parser support lands
+:::
+
+## Progress checklist
+
+::: checklist [type="progress"]
+[ ] Design the state model
+[/] Implement parser updates
+[x] Ship renderer support
+[-] Wait for integration test env
 :::

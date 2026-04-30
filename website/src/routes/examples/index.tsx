@@ -8,6 +8,8 @@ const EXAMPLES: Array<{ slug: string; title: string }> = [
   { slug: "directives", title: "Directives (inline + admonitions)" },
   { slug: "tabs", title: "Tabs (multi-language / multi-tool)" },
   { slug: "checklists", title: "Checklists" },
+  { slug: "diagrams", title: "Diagrams (Mermaid / PlantUML / Graphviz)" },
+  { slug: "animations", title: "Animations (Lottie / GIF / video)" },
   { slug: "images", title: "Images (inline directive)" },
   { slug: "semantic-links", title: "Semantic links + definition lists" },
   { slug: "structural-tables", title: "Structural tables" },

@@ -49,6 +49,9 @@ CentrMark improves documentation by replacing tool-specific syntax hacks (Markdo
 | Tabs / multi-pane content | usually HTML hacks or custom components | possible, but syntax becomes noisy | `::: tabs` + `::: tab`
 | Void elements (like TOC) | not standardized | verbose and tool-specific | `:: toc [depth=...]` (void directive)
 | Admonitions / warnings | usually custom HTML blocks | attribute-heavy macros | `::: warning [title="..."] ... :::`
+| Diagrams | usually plugin-specific fenced blocks | macro/package dependent | `::: diagram [format="mermaid|plantuml|graphviz"] ... :::`
+| Animation embeds | raw HTML/video tags | macro/package dependent | `::: animation [format="lottie|gif|webm" src="..."] :::`
+| Typed checklists | two-state checkboxes only in most flavors | custom extensions | `::: checklist [type="default|progress|decision|risk"]`
 | Extensibility without MDX | MDX pulls in JSX/JS into text | macro systems vary | Void/Block/Inline directives map to a stable AST
 | Cross-source references | `link` vs `xref` varies by tool | implementation-dependent | Semantic Link `[[url \| text]]` (one syntax for both)
 |===

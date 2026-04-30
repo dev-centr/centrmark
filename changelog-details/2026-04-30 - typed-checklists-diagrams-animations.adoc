@@ -1,0 +1,27 @@
+= 2026-04-30 - typed-checklists-diagrams-animations
+
+== Summary
+
+* Added typed checklist semantics with bracket markers, including `[-]` as blocked/pending in the default checklist profile.
+* Added first-class diagram and animation directive profiles to the spec and examples.
+* Implemented renderer support for checklist, diagram, and animation directives in `@centrmark/cmk-renderer`.
+
+== Details
+
+* Spec updates:
+** `spec/informal.adoc` now defines typed checklists, diagram blocks, and animation blocks.
+** `spec/formal_grammar.ebnf` now includes conventional directive profiles for `checklist`, `diagram`, and `animation`.
+* Examples:
+** Added `examples/diagrams.cmk` (Mermaid, PlantUML, Graphviz/DOT).
+** Added `examples/animations.cmk` (Lottie, GIF, WebM metadata).
+** Expanded `examples/checklists.cmk` to demonstrate `type="default"` and `type="progress"`.
+* Renderer:
+** `packages/cmk-renderer/src/html.ts` now maps `checklist`, `diagram`, and `animation` to structured HTML output.
+** Checklist parsing supports `[ ]`, `[x]`, `[-]`, and `[/]`; default style renders `[-]` with strikethrough.
+** Diagram rendering supports inline source (`mermaid`, `plantuml`, `graphviz`/`dot`) and external `src` image fallbacks.
+** Animation rendering supports `lottie`/`dotlottie` via `<lottie-player>`, `gif` via `<img>`, and video-like formats via `<video>`.
+* Tests and fixtures:
+** Added renderer test coverage for checklist/diagram/animation specialized output.
+** Regenerated website example AST fixtures and synced example sources.
+* Versioning:
+** Bumped `@centrmark/cmk-renderer` from `0.1.1` to `0.2.0`.
