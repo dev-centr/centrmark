@@ -9,7 +9,7 @@ image:https://github.com/dev-centr/centrmark/actions/workflows/cmk-renderer-ci.y
 image:https://github.com/dev-centr/centrmark/actions/workflows/cmk-pages.yml/badge.svg[CMK Pages,link=https://github.com/dev-centr/centrmark/actions/workflows/cmk-pages.yml]
 image:https://github.com/dev-centr/centrmark/actions/workflows/cmk-release.yml/badge.svg[CMK Release Builds,link=https://github.com/dev-centr/centrmark/actions/workflows/cmk-release.yml]
 
-toc:: []
+toc::[]
 
 == Core Philosophy
 
