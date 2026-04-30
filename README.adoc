@@ -30,9 +30,10 @@ MDX solves extensibility by injecting JSX and Javascript module importing into d
 
 == The CentrMark Answer
 CentrMark defines three core mechanisms that extend Markdown capabilities seamlessly:
-* **The Void Directive:** `::toc` – self-closing, single-line functions or elements without content.
-* **The Block Directive:** `::: tabs` – container elements that hold complex markdown or other directives.
-* **The Inline Directive:** `@badge[color="red"](New)` – text-span level enrichments.
+
+* *The Void Directive*: `::toc` – self-closing, single-line functions or elements without content.
+* *The Block Directive*: `::: tabs` – container elements that hold complex markdown or other directives.
+* *The Inline Directive*: `@badge[color="red"](New)` – text-span level enrichments.
 
 For detailed breakdown, please see the `spec/` folder.
 
