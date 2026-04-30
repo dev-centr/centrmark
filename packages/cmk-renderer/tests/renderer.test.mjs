@@ -23,8 +23,8 @@ async function loadExampleAst(name) {
   }
 }
 
-test("builds IR from showcase AST fixture", async () => {
-  const ast = await loadExampleAst("showcase");
+test("builds IR from markdown-basics AST fixture", async () => {
+  const ast = await loadExampleAst("markdown-basics");
   const ir = astJsonToRenderIR(ast);
   assert.ok(ir.nodes.length > 0);
   assert.equal(typeof ir.frontmatterRaw, "string");

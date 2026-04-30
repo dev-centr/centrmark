@@ -1,0 +1,37 @@
+---
+title "Markdown basics"
+author {
+  name "CentrMark Team"
+  role "Documentation"
+}
+tags "example", "markdown", "prose"
+version 1.0.0
+status "Final"
+---
+
+# Markdown basics
+
+CentrMark keeps CommonMark-style prose primitives as the default authoring layer: paragraphs, emphasis, code spans, and fenced blockquotes without fighting prefixes on every line.
+
+## Paragraphs and inline marks
+
+As expected, paragraphs wrap automatically. Text can be **bold**, _italic_, or `inline-code`.
+
+## Blockquotes
+
+You can quote people nicely with fenced blockquotes. They look like giant quotation marks!
+
+((
+The limit of MDX is when technical writers have to learn React.
+-- A wise writer
+))
+
+You can also nest blockquotes cleanly without prefixes on every single line.
+
+((
+If you ever need to include a quote inside a quote, just put it inside:
+((
+There is nothing more exhausting than tracking the `> ` prefixes when fixing a copy-pasting error.
+-- Mahatma Gandhi, probably
+))
+))

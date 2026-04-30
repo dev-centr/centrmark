@@ -44,7 +44,8 @@ jobs:
           cp haskell/README.adoc _site/haskell-README.adoc
           cp wrappers/README.adoc _site/wrappers-README.adoc
 
-          cat > _site/index.html <<'HTML'
+          {
+            cat <<'HTML'
           <!doctype html>
           <html lang="en">
           <head>
@@ -61,11 +62,17 @@ jobs:
             <h1>CentrMark CMK Pages</h1>
             <p>This site is built from repository CMK assets.</p>
             <h2>Canonical Examples</h2>
+            <p>One <code>.cmk</code> file per major topic in <code>examples/</code> (see repository <code>examples/README.md</code>).</p>
             <ul>
-              <li><a href="./examples/showcase.cmk">showcase.cmk</a></li>
-              <li><a href="./examples/literate_programming.cmk">literate_programming.cmk</a></li>
+          HTML
+            for f in examples/*.cmk; do
+              b=$(basename "$f")
+              printf '              <li><a href="./examples/%s">%s</a></li>\n' "$b" "$b"
+            done
+            cat <<'HTML'
             </ul>
-            <h2>Showcase</h2>
+            <h2>Editor / VS Code showcase</h2>
+            <p>Smaller slices used for syntax highlighting and depth checks in the extension.</p>
             <ul>
               <li><a href="./showcase/README.md">Showcase README</a></li>
               <li><a href="./showcase/01-blocks.cmk">01 blocks</a></li>
@@ -86,6 +93,7 @@ jobs:
           </body>
           </html>
           HTML
+          } > _site/index.html
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3

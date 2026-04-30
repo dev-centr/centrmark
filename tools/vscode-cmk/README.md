@@ -58,7 +58,7 @@ Use focused showcase samples instead of one large mixed document:
 - `showcase/06-includes-and-reuse.cmk`
 
 These are extension-focused fixture files for syntax/highlighting behavior.
-Canonical project examples live in `examples/*.cmk` at the repository root.
+Canonical project examples live in `examples/*.cmk` at the repository root (one file per major topic; see `examples/README.md`). The `tools/vscode-cmk/showcase/` tree holds smaller slices for the VS Code extension.
 
 ## Color customization by depth
 

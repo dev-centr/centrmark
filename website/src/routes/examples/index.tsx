@@ -2,8 +2,16 @@ import { Title } from "@solidjs/meta";
 import { A } from "@solidjs/router";
 
 const EXAMPLES: Array<{ slug: string; title: string }> = [
-  { slug: "showcase", title: "Feature Showcase" },
-  { slug: "literate-programming", title: "Literate Programming (SLP)" },
+  { slug: "toc", title: "Table of contents (`:: toc`)" },
+  { slug: "markdown-basics", title: "Markdown basics" },
+  { slug: "lists", title: "Lists and continuations" },
+  { slug: "directives", title: "Directives (inline + admonitions)" },
+  { slug: "tabs", title: "Tabs (multi-language / multi-tool)" },
+  { slug: "checklists", title: "Checklists" },
+  { slug: "images", title: "Images (inline directive)" },
+  { slug: "semantic-links", title: "Semantic links + definition lists" },
+  { slug: "structural-tables", title: "Structural tables" },
+  { slug: "literate-programming", title: "Literate programming (SLP)" },
 ];
 
 export default function ExamplesIndex() {

@@ -1,0 +1,42 @@
+---
+title "Table of contents (void directive)"
+author {
+  name "CentrMark Team"
+  role "Documentation"
+}
+tags "example", "toc", "void-directive"
+version 1.0.0
+status "Final"
+---
+
+# Table of contents (void directive)
+
+CentrMark renders an outline from your document using the **void** directive form: two colons, a space, the directive name, then optional SDL-style properties in square brackets.
+
+The canonical spelling is `:: toc` (not `::toc`), matching how block directives use a space after the colon run (for example `::: tabs`).
+
+## What `:: toc` does
+
+At render time, implementations collect headings (and any other outline nodes they support) and emit a navigable table of contents at the directive’s position.
+
+## The `depth` property
+
+`depth` limits how many heading levels appear in the outline. Smaller values keep the TOC shallow; larger values include deeper `###` headings.
+
+## Placement
+
+You can place `:: toc` anywhere: top of the page, after an abstract, or mid-document when you want the outline to interrupt the narrative.
+
+:: toc [depth=3]
+
+## Sample section Alpha
+
+This heading exists so the TOC above has real entries to aggregate.
+
+## Sample section Beta
+
+Another sibling section under the main title.
+
+### Subtopic under Beta
+
+A third-level heading demonstrates `depth=3` including `###` nodes when the renderer applies the property literally.

@@ -1,0 +1,18 @@
+---
+title "Images (inline directive)"
+author {
+  name "CentrMark Team"
+  role "Documentation"
+}
+tags "example", "images", "inline-directive"
+version 1.0.0
+status "Final"
+---
+
+# Images (inline directive)
+
+Inline directives can embed images without dropping down into raw HTML.
+
+@image[src="/images/feature-tabs.svg" alt="Diagram: tabs grouping multiple representations"](Tabs groups multi-tool/multi-language variants under one semantic item.)
+
+@image[src="/images/checklist.svg" alt="Diagram: x/X checklist"](Checklists express state with a single indicator family.)

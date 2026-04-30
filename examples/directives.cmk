@@ -1,0 +1,33 @@
+---
+title "Directives (inline and block)"
+author {
+  name "CentrMark Team"
+  role "Documentation"
+}
+tags "example", "directives", "admonitions"
+version 1.0.0
+status "Final"
+---
+
+# Directives (inline and block)
+
+Directives are the soul of CentrMark. They bridge the gap between simple text and rich interfaces.
+
+## Inline directives
+
+Make your document pop without writing HTML spans or polluting your styles.
+Status: @badge[color="success"](Stable)
+For help, contact @mention[rjamd].
+Watch out for the @icon[name="lucide-alert-triangle"] symbol.
+
+## Admonitions
+
+Instead of typing custom HTML div elements for alerts, use block directives.
+
+::: warning [title="Deprecation Notice"]
+This API is slated for removal in `${version}`. Please migrate to the v2 endpoint soon.
+:::
+
+::: success
+The operation completed perfectly. Notice you don't need properties to use a block directive!
+:::

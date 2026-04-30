@@ -1,0 +1,40 @@
+---
+title "Semantic links and definition lists"
+author {
+  name "CentrMark Team"
+  role "Documentation"
+}
+tags "example", "xref", "links"
+version 1.0.0
+status "Final"
+---
+
+# Semantic links and definition lists
+
+CentrMark’s native cross-reference primitive is the Semantic Link: `[[url | text]]`.
+
+Writers use one syntax, and renderers decide how to treat `url`:
+
+* If `url` targets a known internal page/anchor in any content source, it behaves like an xref (jump + navigation).
+* Otherwise it behaves like a normal link.
+
+## Examples
+
+Semantic link to the tabs example in this repository’s examples set:
+
+[[examples/tabs.cmk#multi-language-code-references | Go to the tabbed HTTP example]]
+
+Cross-source page anchor (same style as other docs in this repo):
+
+[[docs/README.adoc#what-this-improves | see the improvements breakdown]]
+
+External link:
+
+[[https://www.gnu.org/licenses/agpl-3.0.html | AGPL]]
+
+Or learn about these terms:
+
+~ URI
+  Uniform Resource Identifier.
+~ SDL
+  **Simple Declarative Language**. The modern typing layer for configuration.

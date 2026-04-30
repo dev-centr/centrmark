@@ -1,0 +1,34 @@
+---
+title "Structural tables"
+author {
+  name "CentrMark Team"
+  role "Documentation"
+}
+tags "example", "tables", "layout"
+version 1.0.0
+status "Final"
+---
+
+# Structural tables
+
+If markdown pipe-tables aren't enough (they never are), you drop down into structural tables without needing AsciiDoc’s heavy table-only syntax.
+
+::: table [columns="1fr 2fr" gap="1rem" align="top"]
+:: row
+  ::: col [span=2]
+  ### The API Mapping Protocol
+  This covers the entire mapping spec.
+  :::
+:: row
+  ::: col
+  `GET /users`
+  :::
+  ::: col
+  Returns a list of users.
+  You can embed **lists** in table cells easily:
+  - Admin
+  - Standard
+  :::
+:::
+
+CentrMark is aimed at human-readable documentation that still maps cleanly into rich UIs and stable ASTs.

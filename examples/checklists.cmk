@@ -1,0 +1,20 @@
+---
+title "Checklists"
+author {
+  name "CentrMark Team"
+  role "Documentation"
+}
+tags "example", "checklist"
+version 1.0.0
+status "Final"
+---
+
+# Checklists
+
+Checklists use a single indicator family so state is visually unambiguous. In this example, `x` means “done” and `X` means “blocked/pending”.
+
+::: checklist [indicator="x"]
+x Write the specification
+X Add conformance coverage
+x Update the website examples
+:::

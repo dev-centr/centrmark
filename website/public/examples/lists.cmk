@@ -1,0 +1,30 @@
+---
+title "Lists and list continuations"
+author {
+  name "CentrMark Team"
+  role "Documentation"
+}
+tags "example", "lists", "numbering"
+version 1.0.0
+status "Final"
+---
+
+# Lists and list continuations
+
+CentrMark fully handles typical numbering and bullet points, but solves key ergonomic flaws visually and parsing-wise.
+
+* Outer Level List
+- Inner Level List (using flattening via symbol changes)
+0. Auto-numbered generic item
+0. Another numbered step
+* Back to outer level list without ever needing to touch tab spacing!
+
+If you want to append blocks of text to a list context without fighting the spacebar or an editor’s auto-format:
+
+0. Update your `.bashrc` or `.zshrc`.
++
+```bash
+export PATH="/centrmark/bin:$PATH"
+```
++
+0. Apply the changes to your terminal.

@@ -9,11 +9,11 @@ async function fetchText(path: string): Promise<string> {
 
 export default function Home() {
   const [cmkSource] = createResource(
-    () => (typeof window === "undefined" ? undefined : "/examples/showcase.cmk"),
+    () => (typeof window === "undefined" ? undefined : "/examples/toc.cmk"),
     (p) => fetchText(p as string),
   );
   const [cmkAstJson] = createResource(
-    () => (typeof window === "undefined" ? undefined : "/examples/showcase.ast.json"),
+    () => (typeof window === "undefined" ? undefined : "/examples/toc.ast.json"),
     (p) => fetchText(p as string),
   );
 
@@ -52,7 +52,7 @@ export default function Home() {
           ) : null}
 
           <div class="mt-3 text-sm text-muted-foreground">
-            Output: <a href="/examples/showcase/ast" class="text-primary underline">AST JSON</a>
+            Output: <a href="/examples/toc/ast" class="text-primary underline">AST JSON</a>
           </div>
         </div>
 

@@ -1,0 +1,53 @@
+---
+title "Tabs (multi-language and multi-tool)"
+author {
+  name "CentrMark Team"
+  role "Documentation"
+}
+tags "example", "tabs", "code"
+version 1.0.0
+status "Final"
+---
+
+# Tabs (multi-language and multi-tool)
+
+CentrMark’s feature for “multi-pane” technical writing is the `::: tabs` block directive. It groups multiple representations of the same underlying idea (for example, the same API call) under one stable section, so readers can compare variants without losing context.
+
+It supports both multi-language and multi-tool documentation.
+
+For multi-language, each tab shows the same idea in a different implementation language.
+
+For multi-tool, each tab shows the same idea in a different tool/SDK/client.
+
+Use-case: present the same request using different clients.
+
+## Multi-Language Code References
+
+:::: tabs [sync="variant" align="center"]
+
+::: tab [label="curl"]
+```bash
+curl -X GET https://api.example.com/status
+```
+:::
+
+::: tab [label="httpie"]
+```bash
+http GET https://api.example.com/status
+```
+:::
+
+::: tab [label="Python (requests)"]
+```python
+import requests
+res = requests.get("https://api.example.com/status")
+```
+:::
+
+::: tab [label="Go (net/http)"]
+```go
+resp, err := http.Get("https://api.example.com/status")
+```
+:::
+
+::::
