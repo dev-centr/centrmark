@@ -37,6 +37,81 @@ test("renders HTML from literate-programming AST fixture", async () => {
   assert.ok(html.includes("<p>") || html.includes("<h1>"));
 });
 
+test("renders literary sources citations and bibliography", () => {
+  const ast = {
+    frontmatter: { raw: "" },
+    blocks: [
+      {
+        kind: "Paragraph",
+        inlines: [
+          { kind: "Text", text: "Claim " },
+          {
+            kind: "InlineDirective",
+            directiveName: "cite",
+            propsRaw: "key=\"robokiller-877\"",
+            children: []
+          },
+          { kind: "Text", text: " and also " },
+          {
+            kind: "InlineDirective",
+            directiveName: "cite",
+            propsRaw: "keys=\"att-dnc,robokiller-877\"",
+            children: []
+          },
+          { kind: "Text", text: "." }
+        ]
+      },
+      {
+        kind: "BlockDirective",
+        name: "sources",
+        propsRaw: "title=\"Sources\"",
+        body: [
+          {
+            kind: "BlockDirective",
+            name: "source",
+            propsRaw: "key=\"robokiller-877\" type=\"webpage\"",
+            body: [
+              {
+                kind: "Paragraph",
+                inlines: [
+                  {
+                    kind: "Text",
+                    text: "title \"(877) 770-8065 - RoboKiller Lookup\" url \"https://lookup.robokiller.com/p/877-770-8065\" accessed \"2026-08-04\""
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            kind: "BlockDirective",
+            name: "source",
+            propsRaw: "key=\"att-dnc\" type=\"webpage\"",
+            body: [
+              {
+                kind: "Paragraph",
+                inlines: [
+                  {
+                    kind: "Text",
+                    text: "title \"AT&T Do Not Call\" url \"https://www.att.com/support/article/wireless/KM1022818/\" accessed \"2026-08-04\""
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  };
+
+  const html = renderIRToHtml(astJsonToRenderIR(ast));
+  assert.ok(html.includes("class=\"cmk-cite\""));
+  assert.ok(html.includes("href=\"#cmk-source-robokiller-877\""));
+  assert.ok(html.includes("id=\"cmk-source-robokiller-877\""));
+  assert.ok(html.includes("id=\"cmk-source-att-dnc\""));
+  assert.ok(html.includes("class=\"cmk-sources\""));
+  assert.ok(html.includes("lookup.robokiller.com"));
+});
+
 test("renders specialized checklist, diagram, and animation directives", () => {
   const ast = {
     frontmatter: { raw: "" },

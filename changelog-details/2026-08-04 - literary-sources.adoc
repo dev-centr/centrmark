@@ -1,0 +1,7 @@
+= 2026-08-04 – Literary sources
+
+* Added literary-sources authoring surface: `@cite[key=...]` / `@cite[keys=...]`, `::: sources` + nested `::: source`, and void `:: bibliography`.
+* Documented semantics in `spec/informal.adoc` §3.9 and added `examples/literary-sources.cmk`.
+* Extended `@centrmark/cmk-renderer` to emit numbered superscript citations and a `cmk-sources` bibliography section with stable `#cmk-source-<key>` anchors.
+* Added framework packages under `packages/`: `@centrmark/parse` (CLI), `@centrmark/astro` (SSG integration + loader), `@centrmark/solid`, `@centrmark/react`, `@centrmark/next`, and `packages/VANILLA.md`.
+* Bumped `@centrmark/cmk-renderer` to `0.3.0`.

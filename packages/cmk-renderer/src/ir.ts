@@ -7,7 +7,7 @@ import type {
   RenderInline,
   RenderListItem,
   RenderNode
-} from "./types";
+} from "./types.js";
 
 function mapInline(node: CmkInline): RenderInline {
   if (node.kind === "Text") {
@@ -36,12 +36,42 @@ function mapInline(node: CmkInline): RenderInline {
       children: mapInlines(node.children ?? [{ kind: "Text", text: node.text ?? node.url ?? "" }])
     };
   }
+  if (node.kind === "InlineDirective") {
+    const name = (node.directiveName ?? "").toLowerCase();
+    const propsRaw = node.propsRaw ?? "";
+    if (name === "cite") {
+      return { type: "citation", keys: parseCitationKeys(propsRaw) };
+    }
+    return {
+      type: "inlineDirective",
+      name: node.directiveName ?? "",
+      propsRaw,
+      children: mapInlines(node.children)
+    };
+  }
   return {
     type: "inlineDirective",
-    name: node.kind === "InlineDirective" ? node.directiveName ?? "" : "unknown",
-    propsRaw: node.kind === "InlineDirective" ? node.propsRaw ?? "" : "",
-    children: mapInlines(node.kind === "InlineDirective" ? node.children : undefined)
+    name: "unknown",
+    propsRaw: "",
+    children: []
   };
+}
+
+function parseCitationKeys(propsRaw: string): string[] {
+  const keysProp = /(?:^|\s)keys\s*=\s*("(?:[^"\\]|\\.)*"|'(?:[^'\\]|\\.)*'|[^\s]+)/i.exec(propsRaw);
+  const keyProp = /(?:^|\s)key\s*=\s*("(?:[^"\\]|\\.)*"|'(?:[^'\\]|\\.)*'|[^\s]+)/i.exec(propsRaw);
+  const raw = keysProp?.[1] ?? keyProp?.[1] ?? "";
+  let value = raw;
+  if (
+    (value.startsWith("\"") && value.endsWith("\"")) ||
+    (value.startsWith("'") && value.endsWith("'"))
+  ) {
+    value = value.slice(1, -1);
+  }
+  return value
+    .split(",")
+    .map((part) => part.trim())
+    .filter((part) => part.length > 0);
 }
 
 function mapInlines(nodes: CmkInline[] | undefined): RenderInline[] {

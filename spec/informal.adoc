@@ -214,6 +214,32 @@ Animation assets are represented with an `animation` Block Directive and format 
 
 `lottie` is the recommended default format for structured, scriptable animation payloads. Renderers may also support media formats such as `gif`, `mp4`, or `webm`.
 
+=== 3.9 Literary sources (citations and bibliography)
+CentrMark provides a small, declarative literary-sources system so essays and technical posts can cite evidence without HTML footnotes or tool-specific bibliography plugins.
+
+* Inline citation: `@cite[key="att-dnc"]` or `@cite[keys="a,b"]`
+* Source catalog: a `sources` Block Directive containing nested `source` entries
+* Optional void alias: `:: bibliography` emits the collected sources list if no `::: sources` block was already rendered
+
+[source,centrmark]
+----
+Gemini framed the number as vendor traffic @cite[key="robokiller-877"].
+
+::: sources [title="Sources"]
+::: source [key="robokiller-877" type="webpage" title="(877) 770-8065 - RoboKiller Lookup" url="https://lookup.robokiller.com/p/877-770-8065" accessed="2026-08-04"]
+:::
+:::
+----
+
+Body fields (`title "..."` lines inside the `source` fence) are also accepted by the reference renderer when present. Prefer SDL properties on the `source` directive for maximum parser compatibility.
+
+Reference renderers:
+
+* Assign stable citation numbers in document order of first `@cite` use
+* Emit superscript links to `#cmk-source-<key>`
+* Render a `<section class="cmk-sources">` list with matching ids
+* Warn (in development) when a citation key has no matching `source` entry
+
 == 4. Advanced Markdown Enhancements
 
 === 4.1 Definition Lists

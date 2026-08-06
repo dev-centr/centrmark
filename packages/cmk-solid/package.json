@@ -1,0 +1,33 @@
+{
+  "name": "@centrmark/solid",
+  "version": "0.1.0",
+  "private": false,
+  "description": "SolidJS components for rendering CentrMark HTML/AST",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": ["dist", "README.md"],
+  "scripts": {
+    "build": "pnpm exec tsc -p tsconfig.json"
+  },
+  "dependencies": {
+    "@centrmark/cmk-renderer": "file:../cmk-renderer"
+  },
+  "peerDependencies": {
+    "solid-js": "^1.8.0"
+  },
+  "devDependencies": {
+    "solid-js": "^1.9.1",
+    "typescript": "^5.9.3"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

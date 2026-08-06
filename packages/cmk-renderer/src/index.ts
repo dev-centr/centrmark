@@ -5,13 +5,14 @@ export type {
   RenderIRDocument,
   RenderInline,
   RenderListItem,
-  RenderNode
-} from "./types";
-export { astJsonToRenderIR } from "./ir";
-export { renderIRToHtml } from "./html";
+  RenderNode,
+  RenderSourceEntry
+} from "./types.js";
+export { astJsonToRenderIR } from "./ir.js";
+export { renderIRToHtml } from "./html.js";
 export {
   DFfiParserAdapter,
   StaticAstParserAdapter,
   parseAstFromJsonText,
   type CmkParserAdapter
-} from "./parser-adapter";
+} from "./parser-adapter.js";

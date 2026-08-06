@@ -1,0 +1,9 @@
+{
+  "name": "centrmark",
+  "private": true,
+  "packageManager": "pnpm@10.15.0",
+  "scripts": {
+    "build:packages": "pnpm -r --filter @centrmark/* run build",
+    "test:packages": "pnpm --filter @centrmark/cmk-renderer test && pnpm --filter @centrmark/parse test"
+  }
+}

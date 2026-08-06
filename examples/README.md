@@ -16,6 +16,7 @@ This directory holds **one `.cmk` file per major topic** so parsers, renderers, 
 | `semantic-links.cmk` | Semantic links (`[[` … `]]`) and definition lists (`~`) |
 | `structural-tables.cmk` | `::: table` layout |
 | `literate_programming.cmk` | Literate / SLP-oriented directives |
+| `literary-sources.cmk` | `@cite`, `::: sources` / `::: source`, bibliography |
 
 Smaller **editor** slices (syntax highlighting, nesting edge cases) live under `tools/vscode-cmk/showcase/`, not here.
 

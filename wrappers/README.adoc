@@ -25,7 +25,13 @@ This keeps the wrapper small and avoids requiring users to install a D toolchain
 
 Implementation approach:
 
-* Use a Node FFI bridge (e.g. `ffi-napi`) to call `cmk_parse_ref` / `cmk_parse_opt`.
+* Published packages under `@centrmark/*` (see `packages/`):
+** `@centrmark/cmk-renderer` — AST → RenderIR → HTML (including literary sources)
+** `@centrmark/parse` — CLI-backed parse (`centrmark-cli`)
+** `@centrmark/astro` — Astro SSG integration + content loader
+** `@centrmark/solid` / `@centrmark/react` / `@centrmark/next` — framework components/helpers
+** Vanilla recipe: `packages/VANILLA.md`
+* Future FFI path: use a Node FFI bridge (e.g. `ffi-napi`) to call `cmk_parse_ref` / `cmk_parse_opt` once prebuilt shared libraries ship on Releases.
 * Store the downloaded DLL under the package directory (e.g. `~/.cache/centrmark/` or inside the package).
 
 == Python (PyPI)

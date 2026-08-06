@@ -1,7 +1,8 @@
 {
-  "name": "@centrmark/cmk-renderer",
-  "version": "0.3.0",
+  "name": "@centrmark/parse",
+  "version": "0.1.0",
   "private": false,
+  "description": "Parse CentrMark (.cmk) to canonical AST JSON via centrmark-cli",
   "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/types/index.d.ts",
@@ -20,11 +21,17 @@
     "build": "pnpm exec tsc -p tsconfig.json",
     "test": "node --test ./tests/*.test.mjs"
   },
+  "dependencies": {
+    "@centrmark/cmk-renderer": "file:../cmk-renderer"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^5.9.3"
+  },
   "publishConfig": {
     "access": "public"
   },
-  "devDependencies": {
-    "typescript": "^5.9.3"
-  },
-  "packageManager": "pnpm@10.15.0+sha512.486ebc259d3e999a4e8691ce03b5cac4a71cbeca39372a9b762cb500cfdf0873e2cb16abe3d951b1ee2cf012503f027b98b6584e4df22524e0c7450d9ec7aa7b"
+  "engines": {
+    "node": ">=18"
+  }
 }

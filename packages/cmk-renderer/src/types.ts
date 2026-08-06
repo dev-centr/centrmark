@@ -38,13 +38,23 @@ export type RenderInline =
   | { type: "emphasis"; children: RenderInline[] }
   | { type: "link"; href: string; children: RenderInline[] }
   | { type: "semanticLink"; target: string; children: RenderInline[] }
-  | { type: "inlineDirective"; name: string; propsRaw: string; children: RenderInline[] };
+  | { type: "inlineDirective"; name: string; propsRaw: string; children: RenderInline[] }
+  | { type: "citation"; keys: string[] };
 
 export type RenderListItem = {
   marker: "unordered" | "ordered";
   markerValue: string;
   inlines: RenderInline[];
   children: RenderNode[];
+};
+
+export type RenderSourceEntry = {
+  key: string;
+  sourceType: string;
+  title: string;
+  url: string;
+  accessed: string;
+  extra: Record<string, string>;
 };
 
 export type RenderNode =
@@ -55,6 +65,7 @@ export type RenderNode =
   | { type: "list"; items: RenderListItem[] }
   | { type: "blockDirective"; name: string; propsRaw: string; children: RenderNode[] }
   | { type: "voidDirective"; name: string; propsRaw: string }
+  | { type: "sources"; title: string; entries: RenderSourceEntry[] }
   | { type: "unknown"; sourceKind: string };
 
 export type RenderIRDocument = {

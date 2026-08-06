@@ -1,0 +1,25 @@
+---
+title "Literary sources"
+author {
+  name "CentrMark Team"
+  role "Documentation"
+}
+tags "example", "citations", "bibliography", "sources"
+version 1.0.0
+status "Final"
+---
+
+# Literary sources
+
+CentrMark citations keep claims tied to evidence.
+
+Community reports describe mixed caller identities @cite[key="robokiller-877"] while official opt-out guidance lives on the carrier site @cite[keys="att-dnc,nomorobo-877"].
+
+::: sources [title="Sources"]
+::: source [key="robokiller-877" type="webpage" title="(877) 770-8065 - RoboKiller Lookup" url="https://lookup.robokiller.com/p/877-770-8065" accessed="2026-08-04"]
+:::
+::: source [key="att-dnc" type="webpage" title="Register for the AT&T Do Not Call List" url="https://www.att.com/support/article/wireless/KM1022818/" accessed="2026-08-04"]
+:::
+::: source [key="nomorobo-877" type="webpage" title="(877) 770-8065 - Nomorobo" url="https://www.nomorobo.com/lookup/18777708065" accessed="2026-08-04"]
+:::
+:::

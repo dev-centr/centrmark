@@ -1,4 +1,4 @@
-import type { CmkAstDocument } from "./types";
+import type { CmkAstDocument } from "./types.js";
 
 export interface CmkParserAdapter {
   parseToAstJson(cmkSource: string): Promise<CmkAstDocument>;

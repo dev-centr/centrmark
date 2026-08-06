@@ -2,6 +2,14 @@
 
 This changelog acts as a centralized historical record of the evolution of the CentrMark standard over time.
 
+== 2026-08-04 – Literary sources and framework packages
+
+* Added literary-sources citations (`@cite`, `::: sources` / `::: source`, `:: bibliography`) to the language surface and reference renderer.
+* Added npm packages: `@centrmark/parse`, `@centrmark/astro`, `@centrmark/solid`, `@centrmark/react`, `@centrmark/next` (plus vanilla recipe at `packages/VANILLA.md`).
+* Extended release workflow to publish the package set on `cmk-v*` tags.
+* Bumped `@centrmark/cmk-renderer` to `0.3.0`.
+* See link:changelog-details/2026-08-04 - literary-sources.adoc[Detailed changelog].
+
 == 2026-04-30 – Typed checklists, diagrams, and animations
 
 * Added typed checklist semantics (`::: checklist [type="..."]`) with bracket markers and default `[-]` blocked/pending behavior.
