@@ -3,21 +3,12 @@ ifndef::env-github[:icons: font]
 :toclevels: 2
 :sectanchors:
 
-ifndef::env-github[]
+[[readme-top]]
 image:https://img.shields.io/github/contributors/dev-centr/centrmark.svg?style=for-the-badge[Contributors,link=https://github.com/dev-centr/centrmark/graphs/contributors]
 image:https://img.shields.io/github/forks/dev-centr/centrmark.svg?style=for-the-badge[Forks,link=https://github.com/dev-centr/centrmark/network/members]
 image:https://img.shields.io/github/stars/dev-centr/centrmark.svg?style=for-the-badge[Stars,link=https://github.com/dev-centr/centrmark/stargazers]
 image:https://img.shields.io/github/issues/dev-centr/centrmark.svg?style=for-the-badge[Issues,link=https://github.com/dev-centr/centrmark/issues]
 image:https://img.shields.io/github/license/dev-centr/centrmark.svg?style=for-the-badge[License,link=https://github.com/dev-centr/centrmark/blob/main/LICENSE]
-endif::[]
-
-ifdef::env-github[]
-image:https://img.shields.io/github/contributors/dev-centr/centrmark.svg?style=for-the-badge[Contributors]
-image:https://img.shields.io/github/forks/dev-centr/centrmark.svg?style=for-the-badge[Forks]
-image:https://img.shields.io/github/stars/dev-centr/centrmark.svg?style=for-the-badge[Stars]
-image:https://img.shields.io/github/issues/dev-centr/centrmark.svg?style=for-the-badge[Issues]
-image:https://img.shields.io/github/license/dev-centr/centrmark.svg?style=for-the-badge[License]
-endif::[]
 
 = CentrMark (CMK)
 
@@ -95,6 +86,8 @@ At build/render time:
 
 Writers don't need to remember "use xref here, link there".
 
+link:#readme-top[back to top]
+
 == Installation
 
 Build locally with link:https://dub.pm/[dub]:
@@ -107,6 +100,8 @@ dub build
 cd ..\\centrmark-cli
 dub build
 ----
+
+link:#readme-top[back to top]
 
 == Usage
 
@@ -126,9 +121,13 @@ This repo includes an initial reference implementation in D:
 
 Wrappers should call the FFI directly (per `wrappers/README.adoc`) instead of shelling out to a CLI.
 
+link:#readme-top[back to top]
+
 == License
 
 CentrMark materials in this repository are licensed under the link:https://www.gnu.org/licenses/agpl-3.0.html[GNU Affero General Public License v3.0] (`AGPL-3.0`). See `LICENSE`, `NOTICE`, link:LICENSING.adoc[Licensing intent], and link:TRADEMARK.adoc[Trademark guidelines].
+
+link:#readme-top[back to top]
 
 == Certification and Conformance
 
@@ -162,3 +161,5 @@ DevCentr.org — support@devcentr.org
 
 * Project: https://github.com/dev-centr/centrmark
 * Site: https://dev-centr.github.io/centrmark/
+
+link:#readme-top[back to top]
