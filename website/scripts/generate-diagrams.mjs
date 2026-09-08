@@ -40,6 +40,8 @@ function renderMermaid(source, output) {
       output,
       "-c",
       absolute("diagrams/mermaid-config.json"),
+      "-p",
+      absolute("diagrams/puppeteer-config.json"),
       "-b",
       "transparent",
     ],
