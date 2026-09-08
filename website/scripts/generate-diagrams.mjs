@@ -1,4 +1,5 @@
 import { spawnSync } from "node:child_process";
+import { createHash } from "node:crypto";
 import { mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { createRequire } from "node:module";
 import { tmpdir } from "node:os";
@@ -140,25 +141,66 @@ function verifySvg(svg, name, mode) {
   }
 }
 
-function commitOutput(path, expected) {
-  if (check) {
-    let current;
-    try {
-      current = readFileSync(path, "utf8");
-    } catch {
-      throw new Error(`Missing generated asset: ${path}`);
-    }
-    if (current !== expected) {
-      throw new Error(`Stale generated asset: ${path}`);
-    }
-    return;
+function sourceFingerprint(diagram) {
+  const hash = createHash("sha256");
+  for (const path of [
+    absolute(diagram.source),
+    absolute(diagram.manifest),
+    absolute("diagrams/mermaid-config.json"),
+    absolute("package.json"),
+    import.meta.filename,
+  ]) {
+    hash.update(readFileSync(path));
+    hash.update("\0");
   }
+  return hash.digest("hex");
+}
+
+function stamp(svg, fingerprint) {
+  return svg.replace(
+    /(<\?xml[^>]+>\s*)?/i,
+    (declaration = "") =>
+      `${declaration}<!-- themed-svg-source-sha256:${fingerprint} -->\n`,
+  );
+}
+
+function verifyCommitted(path, name, mode, fingerprint) {
+  let current;
+  try {
+    current = readFileSync(path, "utf8");
+  } catch {
+    throw new Error(`Missing generated asset: ${path}`);
+  }
+  if (!current.includes(`themed-svg-source-sha256:${fingerprint}`)) {
+    throw new Error(`Stale generated asset: ${path}`);
+  }
+  verifySvg(current, name, mode);
+}
+
+function commitOutput(path, expected) {
   writeFileSync(path, expected, "utf8");
 }
 
 const temporaryDirectory = mkdtempSync(join(tmpdir(), "centrmark-diagrams-"));
 try {
   for (const diagram of diagrams) {
+    const fingerprint = sourceFingerprint(diagram);
+    if (check) {
+      verifyCommitted(
+        absolute(`public/images/${diagram.name}.svg`),
+        diagram.name,
+        "adaptive",
+        fingerprint,
+      );
+      verifyCommitted(
+        absolute(`public/images/${diagram.name}.host.svg`),
+        diagram.name,
+        "host",
+        fingerprint,
+      );
+      continue;
+    }
+
     const rawPath = join(temporaryDirectory, `${diagram.name}.raw.svg`);
     renderMermaid(diagram.source, rawPath);
     const rawSvg = normalizeAccessibility(readFileSync(rawPath, "utf8"));
@@ -175,10 +217,12 @@ try {
       throw new Error(`Themed SVG generation failed for ${diagram.name}`);
     }
 
-    verifySvg(result.standaloneSvg, diagram.name, "adaptive");
-    verifySvg(result.hostSvg, diagram.name, "host");
-    commitOutput(absolute(`public/images/${diagram.name}.svg`), result.standaloneSvg);
-    commitOutput(absolute(`public/images/${diagram.name}.host.svg`), result.hostSvg);
+    const standaloneSvg = stamp(result.standaloneSvg, fingerprint);
+    const hostSvg = stamp(result.hostSvg, fingerprint);
+    verifySvg(standaloneSvg, diagram.name, "adaptive");
+    verifySvg(hostSvg, diagram.name, "host");
+    commitOutput(absolute(`public/images/${diagram.name}.svg`), standaloneSvg);
+    commitOutput(absolute(`public/images/${diagram.name}.host.svg`), hostSvg);
   }
   process.stdout.write(`${check ? "Verified" : "Generated"} ${diagrams.length} themed diagrams.\n`);
 } finally {
