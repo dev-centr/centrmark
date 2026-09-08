@@ -12,6 +12,7 @@ ifdef::env-github[]
 <a href="https://github.com/dev-centr/centrmark/stargazers"><img src="https://img.shields.io/github/stars/dev-centr/centrmark.svg?style=for-the-badge" alt="Stars"></a>
 <a href="https://github.com/dev-centr/centrmark/issues"><img src="https://img.shields.io/github/issues/dev-centr/centrmark.svg?style=for-the-badge" alt="Issues"></a>
 <a href="https://github.com/dev-centr/centrmark/blob/main/LICENSE"><img src="https://img.shields.io/github/license/dev-centr/centrmark.svg?style=for-the-badge" alt="License"></a>
+<a href="https://dev-centr.github.io/centrmark/"><img src="https://img.shields.io/badge/Docs-Dev--Centr-4f46e5?style=for-the-badge" alt="Docs | Dev-Centr"></a>
 <br />
 <h3 align="center">CentrMark (CMK)</h3>
 <p align="center">
@@ -43,6 +44,7 @@ endif::[]
 image:https://github.com/dev-centr/centrmark/actions/workflows/cmk-renderer-ci.yml/badge.svg[CMK Renderer CI,link=https://github.com/dev-centr/centrmark/actions/workflows/cmk-renderer-ci.yml]
 image:https://github.com/dev-centr/centrmark/actions/workflows/cmk-pages.yml/badge.svg[CMK Pages,link=https://github.com/dev-centr/centrmark/actions/workflows/cmk-pages.yml]
 image:https://github.com/dev-centr/centrmark/actions/workflows/cmk-release.yml/badge.svg[CMK Release Builds,link=https://github.com/dev-centr/centrmark/actions/workflows/cmk-release.yml]
+image:https://img.shields.io/badge/Docs-Dev--Centr-4f46e5?style=for-the-badge[Docs | Dev-Centr,link=https://dev-centr.github.io/centrmark/]
 
 
 == About The Project
@@ -159,6 +161,9 @@ To keep CentrMark behavior consistent across independent implementations, this r
 == Website
 
 The documentation + example registry site is in `website/`.
+
+* Maintainer guide: `website/public/docs/adaptive-themed-diagrams.adoc` (also served at `/docs/adaptive-themed-diagrams` on the published site)
+* Diagram generation: `pnpm --dir website diagrams:generate` / `diagrams:check`
 
 == Antora CMK backend
 

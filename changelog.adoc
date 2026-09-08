@@ -2,6 +2,13 @@
 
 This changelog acts as a centralized historical record of the evolution of the CentrMark standard over time.
 
+== 2026-09-08 – Adaptive website diagrams
+
+* Replaced two fixed website illustrations with editable Mermaid diagrams and standalone-adaptive SVGs.
+* Added explicit Themed SVG manifests, host-mode outputs, progressive runtime enhancement, and reproducible freshness and safety checks.
+* Preserved the original artwork under stable `.fixed.svg` names.
+* See link:changelog-details/2026-09-08 - adaptive-website-diagrams.adoc[Detailed changelog].
+
 == 2026-08-04 – Literary sources and framework packages
 
 * Added literary-sources citations (`@cite`, `::: sources` / `::: source`, `:: bibliography`) to the language surface and reference renderer.

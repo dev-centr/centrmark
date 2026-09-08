@@ -37,6 +37,14 @@ test("renders HTML from literate-programming AST fixture", async () => {
   assert.ok(html.includes("<p>") || html.includes("<h1>"));
 });
 
+test("renders themed image directives with an adaptive fallback", async () => {
+  const ast = await loadExampleAst("images");
+  const html = renderIRToHtml(astJsonToRenderIR(ast));
+  assert.ok(html.includes('src="/images/feature-tabs.svg"'));
+  assert.ok(html.includes('alt="Diagram: tabs grouping multiple representations"'));
+  assert.ok(html.includes("data-themed-svg"));
+});
+
 test("renders literary sources citations and bibliography", () => {
   const ast = {
     frontmatter: { raw: "" },

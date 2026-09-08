@@ -6,6 +6,10 @@ const DOC_MAP: Record<string, { file: string; title: string }> = {
   README: { file: "README.adoc", title: "Spec Overview" },
   informal: { file: "informal.adoc", title: "Informal Specification" },
   formal_grammar: { file: "formal_grammar.ebnf", title: "Formal Grammar (EBNF)" },
+  "adaptive-themed-diagrams": {
+    file: "adaptive-themed-diagrams.adoc",
+    title: "Adaptive Themed Diagrams",
+  },
   changelog: { file: "changelog.adoc", title: "Changelog" },
   certification: { file: "CERTIFICATION.adoc", title: "Conformance & Certification" },
   licensing: { file: "LICENSING.adoc", title: "Licensing Intent" },

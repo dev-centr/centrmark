@@ -50,3 +50,4 @@
 **/.turbo/
 **/coverage/
 **/*.tsbuildinfo
+**/*.raw.svg

@@ -2,6 +2,29 @@
 
 This changelog acts as a centralized historical record of the evolution of the CentrMark standard over time.
 
+== 2026-09-08 – Adaptive website diagrams
+
+* Replaced two fixed website illustrations with editable Mermaid diagrams and standalone-adaptive SVGs.
+* Added explicit Themed SVG manifests, host-mode outputs, progressive runtime enhancement, and reproducible freshness and safety checks.
+* Preserved the original artwork under stable `.fixed.svg` names.
+* See link:changelog-details/2026-09-08 - adaptive-website-diagrams.adoc[Detailed changelog].
+
+== 2026-08-04 – Literary sources and framework packages
+
+* Added literary-sources citations (`@cite`, `::: sources` / `::: source`, `:: bibliography`) to the language surface and reference renderer.
+* Added npm packages: `@centrmark/parse`, `@centrmark/astro`, `@centrmark/solid`, `@centrmark/react`, `@centrmark/next` (plus vanilla recipe at `packages/VANILLA.md`).
+* Extended release workflow to publish the package set on `cmk-v*` tags.
+* Bumped `@centrmark/cmk-renderer` to `0.3.0`.
+* See link:changelog-details/2026-08-04 - literary-sources.adoc[Detailed changelog].
+
+== 2026-04-30 – Typed checklists, diagrams, and animations
+
+* Added typed checklist semantics (`::: checklist [type="..."]`) with bracket markers and default `[-]` blocked/pending behavior.
+* Added diagram and animation directive profiles in the language spec and canonical examples.
+* Implemented first-party renderer support for `checklist`, `diagram`, and `animation` directives in `@centrmark/cmk-renderer`.
+* Bumped `@centrmark/cmk-renderer` to `0.2.0`.
+* See link:changelog-details/2026-04-30 - typed-checklists-diagrams-animations.adoc[Detailed changelog].
+
 == 2026-04-29 – AGPL-3.0 and trademark guidelines
 
 * Added `LICENSE` (GNU Affero General Public License v3.0), `NOTICE`, link:LICENSING.adoc[Licensing intent], and link:TRADEMARK.adoc[Trademark guidelines] to protect forkable implementation while steering compatibility and attribution toward this repository.
@@ -12,6 +35,11 @@ This changelog acts as a centralized historical record of the evolution of the C
 * See link:changelog-details/2026-04-29 - commercial-licensing-lane.adoc[Detailed changelog].
 * Added an initial D reference implementation (library + CLI) that parses a CentrMark subset and emits canonical AST JSON.
 * See link:changelog-details/2026-04-29 - mvp-d-reference-implementation.adoc[Detailed changelog].
+* Added `dlang/centrmark-ffi` (C-ABI dynamic library) to enable wrappers to call the reference/optimized engines without requiring a CLI.
+* Added an MVP CentrMark website (SolidStart) under `website/` and published example CMK inputs + canonical AST JSON output pages.
+* Added wrapper strategy documentation under `wrappers/` and a Haskell reference-spec skeleton under `haskell/`.
+* See link:changelog-details/2026-04-29 - ffi-website-wrappers-haskell.adoc[Detailed changelog].
+* See link:changelog-details/2026-04-29 - antora-cmk-backend.adoc[Detailed changelog].
 
 == 2026-03-14 – CentrMark Inauguration
 

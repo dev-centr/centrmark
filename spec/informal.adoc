@@ -113,6 +113,21 @@ Syntax: `@name[properties](content)`
 Examples:
 * `@badge[color="red"](New)` -> Renders a New red badge.
 * `@mention[user="rjamd"]` -> Renders a profile link to user 'rjamd'.
+* `@image[src="/images/example.svg" alt="Diagram title" themed=true](Optional caption.)` -> Embeds an accessible image; when `themed=true`, host runtimes may upgrade adaptive SVG delivery using site theme tokens.
+
+=== 3.2.1 Image inline directive
+
+The `@image` inline directive embeds raster or vector assets without raw HTML.
+
+Syntax: `@image[src="..." alt="..." themed=true|false](optional caption)`
+
+Properties:
+
+* `src` (required) — asset URL or site-relative path
+* `alt` (required) — accessible description
+* `themed` (optional, boolean) — when true, signals that adaptive Themed SVG assets should be progressively enhanced by the host runtime
+
+The reference renderer emits a lazy-loaded `<img>` with `data-themed-svg` when `themed=true`. See the website maintainer guide for the Mermaid → Themed SVG pipeline.
 
 === 3.3 Void Directives
 Used to render block-level elements that do not contain markdown content. They start with two colons `::` at the beginning of a line.
