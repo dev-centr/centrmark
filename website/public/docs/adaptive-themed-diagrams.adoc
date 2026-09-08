@@ -1,0 +1,160 @@
+= Adaptive themed website diagrams
+:toc: macro
+:sectanchors:
+
+This guide explains how the CentrMark website maintains Mermaid-based illustrations that adapt to light and dark themes, integrate with site design tokens, and stay reproducible in CI.
+
+toc::[]
+
+== Overview
+
+The website ships two feature illustrations (`checklist` and `feature-tabs`) as *Themed SVG v1* assets instead of fixed PNG/SVG artwork. The pipeline has four layers:
+
+. *Editable sources* — Mermaid (`.mmd`) files under `website/diagrams/` describe the diagram structure.
+. *Theme manifests* — JSON manifests (`.theme.json`) map Mermaid paint targets to semantic tokens with light/dark presets.
+. *Generated outputs* — `website/scripts/generate-diagrams.mjs` renders canonical adaptive SVGs plus `.host.svg` siblings into `website/public/images/`.
+. *Runtime enhancement* — CMK content references the adaptive SVG with `@image[themed=true]`, and the client upgrades opted-in images through `@dev-centr/themed-svg`.
+
+== File layout
+
+[source,text]
+----
+website/
+  diagrams/
+    checklist.mmd                 # Mermaid source
+    checklist.theme.json          # Themed SVG manifest
+    feature-tabs.mmd
+    feature-tabs.theme.json
+    mermaid-config.json           # Shared Mermaid CLI config
+  public/images/
+    checklist.svg                 # Standalone adaptive (prefers-color-scheme)
+    checklist.host.svg            # Host-mode (CSS var driven)
+    checklist.fixed.svg           # Preserved legacy artwork
+    feature-tabs.svg
+    feature-tabs.host.svg
+    feature-tabs.fixed.svg
+  scripts/generate-diagrams.mjs   # Generation + verification
+  src/
+    app.css                       # Host token overrides for themed-svg
+    entry-client.tsx              # Progressive runtime upgrade
+----
+
+== Authoring Mermaid sources
+
+Each `.mmd` file should include accessibility metadata Mermaid understands:
+
+[source,text]
+----
+flowchart LR
+  accTitle: Checklist item states
+  accDescr: A checklist item moves from to do through in progress to done...
+
+  checklist["Checklist item"]
+  ...
+----
+
+Keep node labels concise. The generator normalizes Mermaid's default `role="graphics-document document"` to `role="img"` for accessible standalone delivery.
+
+== Theme manifests
+
+Manifests follow the Themed SVG v1 schema (`*.theme.json`). Each manifest declares:
+
+* `namespace` — unique token prefix (for example `centrmark-checklist`)
+* `source` — generator metadata pointing at the `.mmd` file
+* `tokens` — semantic color IDs referenced by bindings
+* `presets.light` / `presets.dark` — hex values validated for WCAG contrast
+* `bindings` — CSS selector/property mappings from Mermaid output to tokens
+
+The build script rejects manifests whose light or dark preset pairs fall below a 4.5:1 contrast ratio.
+
+== Generating and verifying assets
+
+From the repository root (requires `pnpm` and an allowed `puppeteer` build):
+
+[source,bash]
+----
+pnpm --dir website diagrams:generate   # write SVG outputs
+pnpm --dir website diagrams:check    # fail if committed assets are stale
+----
+
+`website/package.json` wires `diagrams:check` into the production `build` script, so CI fails when generated SVGs drift from sources.
+
+Dependencies involved:
+
+* `@mermaid-js/mermaid-cli@11.17.0` — renders `.mmd` to raw SVG
+* `@dev-centr/mermaid-svg-css-vars@0.1.2` — prepares dual themed outputs
+* `@dev-centr/themed-svg@0.1.1` — runtime host upgrade
+
+Ensure `puppeteer` appears under `onlyBuiltDependencies` in the root `pnpm-workspace.yaml` so Mermaid CLI can launch headless Chromium in CI.
+
+== Safety and freshness checks
+
+`generate-diagrams.mjs` verifies every committed SVG before write (or during `--check`):
+
+* Required accessibility envelope (`role="img"`, `<title>`, `<desc>`, `viewBox`, `preserveAspectRatio`)
+* Forbidden content (`<script>`, `<foreignObject>`, event handlers, external URLs)
+* Adaptive contract — standalone SVGs include `@media (prefers-color-scheme: dark)`; host SVGs do not
+* CSS variable fallbacks — every `var(--token)` must include a fallback value
+
+== Referencing diagrams in CMK
+
+Use the `@image` inline directive with `themed=true` so the renderer emits `data-themed-svg` and the client runtime can swap in host-mode delivery:
+
+[source,centrmark]
+----
+@image[src="/images/checklist.svg" alt="Diagram: checklist item states" themed=true](Checklists express state with a single indicator family.)
+----
+
+The reference renderer maps this to an accessible `<img>` with lazy loading. See `examples/images.cmk` for the canonical example.
+
+== Host token wiring
+
+When a diagram is upgraded at runtime, host tokens resolve against CSS custom properties declared on the `themed-svg` element in `website/src/app.css`. Each manifest namespace gets a block such as:
+
+[source,css]
+----
+themed-svg {
+  --themed-svg-centrmark-checklist-color-surface-primary: hsl(var(--card, 0 0% 100%));
+  --themed-svg-centrmark-checklist-color-text-primary: hsl(var(--foreground, 222 47% 11%));
+  ...
+}
+----
+
+Add matching declarations when introducing a new manifest namespace so upgraded diagrams inherit site theme tokens.
+
+== Adding a new diagram
+
+. Create `website/diagrams/<name>.mmd` with `accTitle` / `accDescr`.
+. Create `website/diagrams/<name>.theme.json` with a unique `namespace`.
+. Register the pair in the `diagrams` array inside `website/scripts/generate-diagrams.mjs`.
+. Add host token overrides to `website/src/app.css`.
+. Run `pnpm --dir website diagrams:generate` and commit the three outputs under `website/public/images/` (`.svg`, `.host.svg`, and optionally `.fixed.svg` for legacy preservation).
+. Reference the adaptive SVG from CMK with `@image[... themed=true]`.
+
+== Troubleshooting
+
+[cols="2,3",options="header"]
+|===
+| Symptom | Likely fix
+
+| `Stale generated asset` during build
+| Re-run `pnpm --dir website diagrams:generate` after editing `.mmd` or `.theme.json`.
+
+| Mermaid CLI / puppeteer install failure
+| Confirm `puppeteer` is listed in root `pnpm-workspace.yaml` `onlyBuiltDependencies`, then reinstall with `pnpm install`.
+
+| Contrast validation error
+| Adjust `presets.light` / `presets.dark` hex pairs in the manifest until text/surface and edge/label pairs exceed 4.5:1.
+
+| Diagram renders but does not follow site theme
+| Verify `@image` uses `themed=true`, `entry-client.tsx` calls `upgradeThemedSvgImages`, and `app.css` defines tokens for the manifest namespace.
+
+| Missing `<title>` or unsafe SVG content
+| Regenerate from Mermaid; do not hand-edit committed `.svg` / `.host.svg` outputs.
+|===
+
+== Related pages
+
+* link:informal.adoc[Informal specification] — `@image` inline directive
+* link:changelog.adoc[Changelog] — link:changelog-details/2026-09-08 - adaptive-website-diagrams.adoc[2026-09-08 adaptive website diagrams entry]
+* Repository `examples/images.cmk` — live CMK example wired into the website example registry

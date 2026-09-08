@@ -5,6 +5,7 @@ const DOCS: Array<{ slug: string; title: string }> = [
   { slug: "README", title: "Spec Overview" },
   { slug: "informal", title: "Informal Specification" },
   { slug: "formal_grammar", title: "Formal Grammar (EBNF)" },
+  { slug: "adaptive-themed-diagrams", title: "Adaptive Themed Diagrams" },
   { slug: "changelog", title: "Changelog" },
   { slug: "certification", title: "Conformance & Certification" },
   { slug: "licensing", title: "Licensing Intent (AGPL + lanes)" },

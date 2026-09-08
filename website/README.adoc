@@ -1,31 +1,61 @@
-= Food Truck Nerdz - SolidStart Implementation
+= CentrMark website (SolidStart)
+:toc: macro
 
-This is the primary web application for Food Truck Nerdz, built with SolidStart and Solid-UI.
+The `website/` workspace hosts the CentrMark documentation site, example registry, and themed diagram assets.
+
+toc::[]
 
 == Features
 
-* **3D Hero**: Interactive metallic food truck model built with Three.js.
-* **Geolocated Search**: Automatic city detection for instant local truck finding.
-* **Bespoke Design**: Muted "Slate & Copper" color palette with modern typography (Outfit & Hanken Grotesk).
-* **Dual-Mode Spacing**: Spacious marketing homepage and reserved, dense web app layouts.
+* **Documentation browser** — renders AsciiDoc sources from `public/docs/` (spec overview, informal spec, changelog, licensing).
+* **Example registry** — syncs canonical `.cmk` files from `../examples/` and exposes rendered HTML plus canonical AST JSON.
+* **Adaptive themed diagrams** — Mermaid sources with Themed SVG v1 manifests; see link:public/docs/adaptive-themed-diagrams.adoc[Adaptive themed website diagrams].
 
-== Getting Started
+== Getting started
 
-Ensure you are using `pnpm` in the root of the monorepo.
+From the repository root (requires `pnpm`):
 
 [source,bash]
 ----
 pnpm install
-pnpm dev
+pnpm --dir website dev
 ----
+
+The dev script syncs examples, then starts the SolidStart app with Vinxi.
+
+== Build and CI checks
+
+[source,bash]
+----
+pnpm --dir website build
+----
+
+The build pipeline:
+
+. Builds `@centrmark/cmk-renderer`
+. Verifies themed diagram freshness (`diagrams:check`)
+. Syncs examples into `public/examples/`
+. Produces the production SolidStart bundle
+
+Regenerate diagram SVGs after editing Mermaid sources:
+
+[source,bash]
+----
+pnpm --dir website diagrams:generate
+----
+
+== Key directories
+
+[cols="2,3",options="header"]
+|===
+| Path | Purpose
+| `public/docs/` | AsciiDoc documentation served at `/docs/*`
+| `public/examples/` | Synced CMK examples (generated; do not edit directly)
+| `public/images/` | Generated themed SVG outputs
+| `diagrams/` | Mermaid sources and theme manifests
+| `scripts/` | Example sync and diagram generation
+|===
 
 == Deployment
 
-Deployed to Vercel via GitHub Actions.
-
-* **Project URL**: link:https://foodtrucknerdz.com[foodtrucknerdz.com]
-* **Documentation**: link:../docs/modules/ROOT/pages/index.adoc[Local Docs Index]
-
-== Shared Assets
-
-Design tokens and the 3D model engine are located in the `shared/` workspace directory.
+Published via GitHub Pages at link:https://dev-centr.github.io/centrmark/[dev-centr.github.io/centrmark].
