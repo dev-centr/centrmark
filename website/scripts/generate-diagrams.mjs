@@ -1,13 +1,15 @@
 import { spawnSync } from "node:child_process";
 import { mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { createRequire } from "node:module";
 import { tmpdir } from "node:os";
-import { join } from "node:path";
+import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { prepareThemedMermaidSvgDualOutput } from "@dev-centr/mermaid-svg-css-vars";
 
 const root = fileURLToPath(new URL("../", import.meta.url));
-const mermaidCli = fileURLToPath(
-  new URL("../../node_modules/@mermaid-js/mermaid-cli/src/cli.js", import.meta.url),
+const mermaidCli = join(
+  dirname(createRequire(import.meta.url).resolve("@mermaid-js/mermaid-cli")),
+  "cli.js",
 );
 const check = process.argv.includes("--check");
 const diagrams = [
