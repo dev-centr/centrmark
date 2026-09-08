@@ -1,0 +1,106 @@
+{
+  "$schema": "https://docs.devcentr.org/themed-svg/schemas/themed-svg-manifest-v1.schema.json",
+  "schemaVersion": 1,
+  "namespace": "centrmark-feature-tabs",
+  "source": {
+    "kind": "mermaid",
+    "uri": "feature-tabs.mmd",
+    "generator": "@mermaid-js/mermaid-cli@11.17.0"
+  },
+  "tokens": [
+    { "id": "color.surface.primary", "description": "Representation node surface" },
+    { "id": "color.text.primary", "description": "Representation label" },
+    { "id": "color.border.primary", "description": "Representation node border" },
+    { "id": "color.edge", "description": "Grouping connector and arrow" },
+    { "id": "color.edge.label", "description": "Connector label backing surface" }
+  ],
+  "defaultPreset": "light",
+  "presets": {
+    "light": {
+      "color.surface.primary": "#eef2ff",
+      "color.text.primary": "#172033",
+      "color.border.primary": "#4f46e5",
+      "color.edge": "#64748b",
+      "color.edge.label": "#ffffff"
+    },
+    "dark": {
+      "color.surface.primary": "#1e293b",
+      "color.text.primary": "#f8fafc",
+      "color.border.primary": "#818cf8",
+      "color.edge": "#cbd5e1",
+      "color.edge.label": "#0f172a"
+    }
+  },
+  "bindings": [
+    {
+      "kind": "stylesheet",
+      "selector": "#my-svg",
+      "property": "fill",
+      "token": "color.text.primary"
+    },
+    {
+      "kind": "stylesheet",
+      "selector": "#my-svg .label text",
+      "property": "fill",
+      "token": "color.text.primary"
+    },
+    {
+      "kind": "stylesheet",
+      "selector": "#my-svg .label text",
+      "property": "color",
+      "token": "color.text.primary"
+    },
+    {
+      "kind": "stylesheet",
+      "selector": "#my-svg .node rect",
+      "property": "fill",
+      "token": "color.surface.primary"
+    },
+    {
+      "kind": "stylesheet",
+      "selector": "#my-svg .node rect",
+      "property": "stroke",
+      "token": "color.border.primary"
+    },
+    {
+      "kind": "stylesheet",
+      "selector": "#my-svg .marker",
+      "property": "fill",
+      "token": "color.edge"
+    },
+    {
+      "kind": "stylesheet",
+      "selector": "#my-svg .marker",
+      "property": "stroke",
+      "token": "color.edge"
+    },
+    {
+      "kind": "stylesheet",
+      "selector": "#my-svg .edgePaths .path",
+      "property": "stroke",
+      "token": "color.edge"
+    },
+    {
+      "kind": "stylesheet",
+      "selector": "#my-svg .flowchart-link",
+      "property": "stroke",
+      "token": "color.edge"
+    },
+    {
+      "kind": "stylesheet",
+      "selector": "#my-svg .edgeLabel rect",
+      "property": "background-color",
+      "token": "color.edge.label"
+    },
+    {
+      "kind": "stylesheet",
+      "selector": "#my-svg .edgeLabel rect",
+      "property": "fill",
+      "token": "color.edge.label"
+    }
+  ],
+  "fallback": {
+    "unresolvedToken": "error",
+    "missingTarget": "error"
+  }
+}

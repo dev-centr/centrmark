@@ -1,0 +1,15 @@
+flowchart LR
+  accTitle: Checklist item states
+  accDescr: A checklist item moves from to do through in progress to done, while an impediment can move it to blocked until resolved.
+
+  checklist["Checklist item"]
+  unchecked["[ ] To do"]
+  progress["[/] In progress"]
+  done["[x] Done"]
+  blocked["[-] Blocked"]
+
+  checklist --> unchecked
+  unchecked --> progress
+  progress --> done
+  progress -. impediment .-> blocked
+  blocked -. resolved .-> progress
