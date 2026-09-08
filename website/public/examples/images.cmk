@@ -13,6 +13,6 @@ status "Final"
 
 Inline directives can embed images without dropping down into raw HTML.
 
-@image[src="/images/feature-tabs.svg" alt="Diagram: tabs grouping multiple representations"](Tabs groups multi-tool/multi-language variants under one semantic item.)
+@image[src="/images/feature-tabs.svg" alt="Diagram: tabs grouping multiple representations" themed=true](Tabs groups multi-tool/multi-language variants under one semantic item.)
 
-@image[src="/images/checklist.svg" alt="Diagram: x/X checklist"](Checklists express state with a single indicator family.)
+@image[src="/images/checklist.svg" alt="Diagram: checklist item states" themed=true](Checklists express state with a single indicator family.)

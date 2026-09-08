@@ -1,0 +1,7 @@
+= 2026-09-08 – Adaptive website diagrams
+
+* Replaced the checklist and feature-tabs illustrations with genuine Mermaid diagrams whose editable sources describe checklist state transitions and tabbed representation grouping.
+* Added explicit Themed SVG v1 manifests and reproducible generation with `@dev-centr/mermaid-svg-css-vars@0.1.2`, `@dev-centr/themed-svg@0.1.1`, and `@mermaid-js/mermaid-cli@11.17.0`.
+* Published standalone-adaptive canonical SVGs and progressively enhanced `.host.svg` siblings while preserving the original fixed artwork as `.fixed.svg`.
+* Added generated-asset freshness, SVG safety, accessibility, and light/dark delivery checks to the website build.
+* Rendered CentrMark image directives as accessible images and upgraded opted-in diagrams through the sanitized Themed SVG runtime using the website theme tokens.

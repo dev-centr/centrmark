@@ -261,6 +261,14 @@ function renderInline(ctx: RenderContext, node: RenderInline): string {
   if (node.type === "inlineDirective" && node.name.toLowerCase() === "cite") {
     return renderCitation(ctx, parseCitationKeysFromProps(node.propsRaw));
   }
+  if (node.type === "inlineDirective" && node.name.toLowerCase() === "image") {
+    const props = parseDirectiveProps(node.propsRaw);
+    const src = typeof props.src === "string" ? props.src : "";
+    const alt = typeof props.alt === "string" ? props.alt : "";
+    const themed = props.themed === true ? " data-themed-svg" : "";
+    const caption = renderInlines(ctx, node.children);
+    return `<span class="cmk-image"><img src="${escapeHtml(src)}" alt="${escapeHtml(alt)}" loading="lazy" decoding="async"${themed} />${caption ? `<span class="cmk-image-caption">${caption}</span>` : ""}</span>`;
+  }
   return `<span data-cmk-inline-directive="${escapeHtml(node.name)}">${renderInlines(ctx, node.children)}</span>`;
 }
 

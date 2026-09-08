@@ -1,0 +1,23 @@
+{
+  "theme": "base",
+  "deterministicIds": true,
+  "deterministicIDSeed": "centrmark-diagrams-v1",
+  "fontFamily": "ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif",
+  "htmlLabels": false,
+  "flowchart": {
+    "curve": "basis",
+    "htmlLabels": false,
+    "useMaxWidth": true
+  },
+  "themeVariables": {
+    "background": "#ffffff",
+    "primaryColor": "#eef2ff",
+    "primaryTextColor": "#172033",
+    "primaryBorderColor": "#4f46e5",
+    "lineColor": "#64748b",
+    "secondaryColor": "#f8fafc",
+    "tertiaryColor": "#f1f5f9",
+    "edgeLabelBackground": "#ffffff",
+    "fontSize": "16px"
+  }
+}
