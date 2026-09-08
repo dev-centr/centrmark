@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="240" viewBox="0 0 640 240" role="img" aria-label="Diagram: tabs grouping multiple representations">
+  <rect x="20" y="40" width="220" height="160" rx="10" fill="#111827" opacity="0.08"/>
+  <rect x="240" y="40" width="220" height="160" rx="10" fill="#111827" opacity="0.08"/>
+  <rect x="460" y="40" width="160" height="160" rx="10" fill="#111827" opacity="0.08"/>
+
+  <rect x="20" y="20" width="220" height="40" rx="10" fill="#2563eb" opacity="0.12"/>
+  <rect x="240" y="20" width="220" height="40" rx="10" fill="#2563eb" opacity="0.12"/>
+  <rect x="460" y="20" width="160" height="40" rx="10" fill="#2563eb" opacity="0.12"/>
+
+  <text x="130" y="46" font-family="ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial" font-size="16" text-anchor="middle" fill="#0f172a">tabs</text>
+  <text x="350" y="46" font-family="ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial" font-size="16" text-anchor="middle" fill="#0f172a">tab 1</text>
+  <text x="540" y="46" font-family="ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial" font-size="16" text-anchor="middle" fill="#0f172a">tab N</text>
+
+  <path d="M 240 120 C 270 90, 310 90, 340 120" fill="none" stroke="#2563eb" stroke-width="3" opacity="0.6"/>
+  <path d="M 320 140 C 350 110, 390 110, 420 140" fill="none" stroke="#2563eb" stroke-width="3" opacity="0.6"/>
+
+  <text x="130" y="125" font-family="ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace" font-size="14" text-anchor="middle" fill="#0f172a">curl</text>
+  <text x="350" y="125" font-family="ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace" font-size="14" text-anchor="middle" fill="#0f172a">Python</text>
+  <text x="540" y="125" font-family="ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace" font-size="14" text-anchor="middle" fill="#0f172a">Go</text>
+
+  <text x="320" y="210" font-family="ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial" font-size="14" text-anchor="middle" fill="#0f172a">one section, many representations</text>
+</svg>
+
