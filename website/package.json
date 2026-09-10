@@ -6,6 +6,7 @@
     "sync:examples": "node ./scripts/sync-examples.mjs",
     "dev": "pnpm run sync:examples && vinxi dev",
     "build": "pnpm run sync:examples && vinxi build",
+    "postbuild": "node ./scripts/write-crawlability.mjs",
     "start": "vinxi start"
   },
   "dependencies": {

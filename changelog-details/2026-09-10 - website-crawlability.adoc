@@ -1,0 +1,4 @@
+= 2026-09-10 — Website crawlability
+
+* SolidStart `website/` generates `/robots.txt` and `/sitemap.xml` from the shared prerender route list (docs + examples).
+* Absolute URLs use `https://dev-centr.github.io/centrmark/`.
