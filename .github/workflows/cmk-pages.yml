@@ -95,6 +95,23 @@ jobs:
           HTML
           } > _site/index.html
 
+          # Crawlability for project Pages under /centrmark/
+          origin='https://dev-centr.github.io/centrmark'
+          {
+            printf 'User-agent: *\nAllow: /\n\nSitemap: %s/sitemap.xml\n' "$origin"
+          } > _site/robots.txt
+          {
+            echo '<?xml version="1.0" encoding="UTF-8"?>'
+            echo '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'
+            printf '  <url><loc>%s/</loc></url>\n' "$origin"
+            for f in examples/*.cmk; do
+              b=$(basename "$f")
+              printf '  <url><loc>%s/examples/%s</loc></url>\n' "$origin" "$b"
+            done
+            printf '  <url><loc>%s/showcase/README.md</loc></url>\n' "$origin"
+            echo '</urlset>'
+          } > _site/sitemap.xml
+
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
