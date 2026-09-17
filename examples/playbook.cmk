@@ -1,0 +1,18 @@
+---
+title "Playbook / step profile (Scriptbook)"
+tags "scriptbook", "playbook", "execution"
+---
+
+= Playbook directives
+
+CentrMark parses `::: playbook` and `::: step` as ordinary block directives.
+**Execution** is owned by link:https://github.com/dev-centr/scriptbook[Scriptbook]
+(sidecar run output ΓÇö the `.cmk` is never rewritten). Do not put `exec` in CentrMark FFI.
+
+::: playbook [id="demo" shell="auto"]
+::: step [id="hello"]
+```
+echo hello-from-centrmark-example
+```
+:::
+:::

@@ -1,8 +1,13 @@
-= Changelog
+﻿= Changelog
 
+== 2026-07-31 â€” Playbook profile + Scriptbook pointer
+
+* Documented `::: playbook` / `::: step` as a CentrMark directive profile whose **execution** belongs to link:https://github.com/dev-centr/scriptbook[Scriptbook] (sidecar output; no rewrite of `.cmk`).
+* Added `examples/playbook.cmk` and parse-only CTS vector `conformance/vectors/playbook-basic.cmk`.
+* Informal spec Â§5 points executors at Scriptbook; CentrMark FFI must not grow `exec`.
 This changelog acts as a centralized historical record of the evolution of the CentrMark standard over time.
 
-== 2026-08-04 – Literary sources and framework packages
+== 2026-08-04 Î“Ã‡Ã´ Literary sources and framework packages
 
 * Added literary-sources citations (`@cite`, `::: sources` / `::: source`, `:: bibliography`) to the language surface and reference renderer.
 * Added npm packages: `@centrmark/parse`, `@centrmark/astro`, `@centrmark/solid`, `@centrmark/react`, `@centrmark/next` (plus vanilla recipe at `packages/VANILLA.md`).
@@ -10,7 +15,7 @@ This changelog acts as a centralized historical record of the evolution of the C
 * Bumped `@centrmark/cmk-renderer` to `0.3.0`.
 * See link:changelog-details/2026-08-04 - literary-sources.adoc[Detailed changelog].
 
-== 2026-04-30 – Typed checklists, diagrams, and animations
+== 2026-04-30 Î“Ã‡Ã´ Typed checklists, diagrams, and animations
 
 * Added typed checklist semantics (`::: checklist [type="..."]`) with bracket markers and default `[-]` blocked/pending behavior.
 * Added diagram and animation directive profiles in the language spec and canonical examples.
@@ -18,7 +23,7 @@ This changelog acts as a centralized historical record of the evolution of the C
 * Bumped `@centrmark/cmk-renderer` to `0.2.0`.
 * See link:changelog-details/2026-04-30 - typed-checklists-diagrams-animations.adoc[Detailed changelog].
 
-== 2026-04-29 – AGPL-3.0 and trademark guidelines
+== 2026-04-29 Î“Ã‡Ã´ AGPL-3.0 and trademark guidelines
 
 * Added `LICENSE` (GNU Affero General Public License v3.0), `NOTICE`, link:LICENSING.adoc[Licensing intent], and link:TRADEMARK.adoc[Trademark guidelines] to protect forkable implementation while steering compatibility and attribution toward this repository.
 * Added `CERTIFICATION.adoc` and `conformance/` documentation to support a CentrMark conformance test suite + certification registry.
@@ -34,7 +39,7 @@ This changelog acts as a centralized historical record of the evolution of the C
 * See link:changelog-details/2026-04-29 - ffi-website-wrappers-haskell.adoc[Detailed changelog].
 * See link:changelog-details/2026-04-29 - antora-cmk-backend.adoc[Detailed changelog].
 
-== 2026-03-14 – CentrMark Inauguration
+== 2026-03-14 Î“Ã‡Ã´ CentrMark Inauguration
 
 * Initial formal spec, EBNF grammar layout, and feature showcase (fenced blockquotes, generic list auto-increments).
 * See link:changelog-details/2026-03-14 - centrmark-inauguration.adoc[Detailed changelog].
