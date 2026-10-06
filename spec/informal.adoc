@@ -288,6 +288,6 @@ Absolutely zero raw HTML/XML tags (`<tag>`) are required, dramatically cleaning 
 
 == 5. Playbook profile (Scriptbook)
 
-CentrMark itself is declarative markup. For **runnable** documents (`::: playbook` / `::: step`), parse them as normal block directives. **Execution** ╬ô├ç├╢ running step scripts and recording stdout/stderr in sidecars ╬ô├ç├╢ is owned by link:https://github.com/dev-centr/scriptbook[Scriptbook]. Do **not** put host `exec` inside CentrMark FFI.
+CentrMark itself is declarative markup. For **runnable** documents (`::: playbook` / `::: step`), parse them as normal block directives. **Execution** — running step scripts and recording stdout/stderr in sidecars — is owned by link:https://github.com/dev-centr/scriptbook[Scriptbook]. Do **not** put host `exec` inside CentrMark FFI.
 
 Example: `examples/playbook.cmk`. Parse-only CTS vector: `conformance/vectors/playbook-basic.cmk`.

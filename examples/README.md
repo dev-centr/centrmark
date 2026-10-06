@@ -1,6 +1,6 @@
 # Canonical CentrMark examples
 
-This directory holds **one `.cmk` file per major topic** so parsers, renderers, and docs can point at a small, focused sample instead of a single mixed ΓÇ£kitchen sinkΓÇ¥ file.
+This directory holds **one `.cmk` file per major topic** so parsers, renderers, and docs can point at a small, focused sample instead of a single mixed “kitchen sink” file.
 
 | File | Topic |
 |------|--------|
@@ -13,7 +13,7 @@ This directory holds **one `.cmk` file per major topic** so parsers, renderers, 
 | `diagrams.cmk` | Diagram blocks (`::: diagram`) with Mermaid / PlantUML / Graphviz |
 | `animations.cmk` | Animation blocks (`::: animation`) with Lottie/GIF/video metadata |
 | `images.cmk` | `@image[...](...)` |
-| `semantic-links.cmk` | Semantic links (`[[` ΓÇª `]]`) and definition lists (`~`) |
+| `semantic-links.cmk` | Semantic links (`[[` … `]]`) and definition lists (`~`) |
 | `structural-tables.cmk` | `::: table` layout |
 | `literate_programming.cmk` | Literate / SLP-oriented directives |
 | `literary-sources.cmk` | `@cite`, `::: sources` / `::: source`, bibliography |
@@ -30,4 +30,4 @@ The site and renderer tests consume JSON from `centrmark-cli parse`:
 dlang/centrmark-cli/bin/centrmark-cli parse examples/<name>.cmk > website/public/examples/<slug>.ast.json
 ```
 
-Use the same **slug** as the website: underscores in filenames become hyphens (e.g. `literate_programming.cmk` ΓåÆ `literate-programming.ast.json`). Then run `pnpm run sync:examples` from `website/` so `.cmk` sources are copied into `website/public/examples/`.
+Use the same **slug** as the website: underscores in filenames become hyphens (e.g. `literate_programming.cmk` → `literate-programming.ast.json`). Then run `pnpm run sync:examples` from `website/` so `.cmk` sources are copied into `website/public/examples/`.
