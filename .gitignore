@@ -50,3 +50,5 @@
 **/.turbo/
 **/coverage/
 **/*.tsbuildinfo
+!/.editorconfig
+!/.gitattributes
