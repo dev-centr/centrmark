@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- Replaced the deprecated `vsce` dev dependency with its renamed successor `@vscode/vsce` (3.x, already used by `ovsx`), dropping glob 7 and inflight from the tree.
+
 ## 0.0.2
 
 - Added CMK void directive support for `include` and `set` in syntax highlighting.
