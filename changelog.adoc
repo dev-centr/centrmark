@@ -1,5 +1,9 @@
 ﻿= Changelog
 
+== 2026-10-06 — Website dependency refresh
+
+* Refreshed deprecated transitive dependencies in `website/` within existing ranges: `@ungap/structured-clone` 1.4.0 and `@xmldom/xmldom` 0.8.15.
+
 == 2026-07-31 — Playbook profile + Scriptbook pointer
 
 * Documented `::: playbook` / `::: step` as a CentrMark directive profile whose **execution** belongs to link:https://github.com/dev-centr/scriptbook[Scriptbook] (sidecar output; no rewrite of `.cmk`).
