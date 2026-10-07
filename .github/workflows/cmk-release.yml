@@ -34,6 +34,7 @@ jobs:
         with:
           name: centrmark-cmk-cli-source
           path: dist/centrmark-cmk-cli-source.tar.gz
+          retention-days: 1
 
   build-library:
     runs-on: ubuntu-latest
@@ -53,6 +54,7 @@ jobs:
         with:
           name: centrmark-cmk-library-source
           path: dist/centrmark-cmk-library-source.tar.gz
+          retention-days: 1
 
   build-wrappers:
     runs-on: ubuntu-latest
@@ -72,6 +74,7 @@ jobs:
         with:
           name: centrmark-cmk-wrappers-source
           path: dist/centrmark-cmk-wrappers-source.tar.gz
+          retention-days: 1
 
   publish-release:
     if: startsWith(github.ref, 'refs/tags/') || github.event_name == 'workflow_dispatch'
