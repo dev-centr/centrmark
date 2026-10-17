@@ -3,15 +3,18 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
+    "diagrams:generate": "node ./scripts/generate-diagrams.mjs",
+    "diagrams:check": "node ./scripts/generate-diagrams.mjs --check",
     "sync:examples": "node ./scripts/sync-examples.mjs",
     "dev": "pnpm run sync:examples && vinxi dev",
-    "build": "pnpm run sync:examples && vinxi build",
+    "build": "pnpm --dir ../packages/cmk-renderer build && pnpm run diagrams:generate && pnpm run sync:examples && vinxi build",
     "postbuild": "node ./scripts/write-crawlability.mjs",
     "start": "vinxi start"
   },
   "dependencies": {
     "@asciidoctor/core": "4.1.1",
     "@centrmark/cmk-renderer": "file:../packages/cmk-renderer",
+    "@dev-centr/themed-svg": "0.1.1",
     "@kobalte/core": "^0.13.11",
     "@solidjs/meta": "^0.29.3",
     "@solidjs/router": "^0.13.3",
@@ -26,6 +29,8 @@
     "vinxi": "^0.5.7"
   },
   "devDependencies": {
+    "@dev-centr/mermaid-svg-css-vars": "0.1.2",
+    "@mermaid-js/mermaid-cli": "11.17.0",
     "autoprefixer": "10.4.21",
     "postcss": "8.5.3",
     "tailwindcss": "^3.4.19",

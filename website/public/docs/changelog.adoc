@@ -2,6 +2,13 @@
 
 This changelog acts as a centralized historical record of the evolution of the CentrMark standard over time.
 
+== 2026-09-08 – Adaptive website diagrams
+
+* Replaced two fixed website illustrations with editable Mermaid diagrams and standalone-adaptive SVGs.
+* Added explicit Themed SVG manifests, host-mode outputs, progressive runtime enhancement, and reproducible freshness and safety checks.
+* Preserved the original artwork under stable `.fixed.svg` names.
+* See link:changelog-details/2026-09-08 - adaptive-website-diagrams.adoc[Detailed changelog].
+
 == 2026-04-29 – AGPL-3.0 and trademark guidelines
 
 * Added `LICENSE` (GNU Affero General Public License v3.0), `NOTICE`, link:LICENSING.adoc[Licensing intent], and link:TRADEMARK.adoc[Trademark guidelines] to protect forkable implementation while steering compatibility and attribution toward this repository.

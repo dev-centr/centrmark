@@ -1,2 +1,9 @@
 packages:
   - "packages/*"
+  - "website"
+  - "tools/vscode-cmk"
+
+onlyBuiltDependencies:
+  - "@parcel/watcher"
+  - "esbuild"
+  - "puppeteer"

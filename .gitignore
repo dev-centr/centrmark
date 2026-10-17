@@ -52,3 +52,4 @@
 **/*.tsbuildinfo
 !/.editorconfig
 !/.gitattributes
+**/*.raw.svg
