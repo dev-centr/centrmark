@@ -55,13 +55,28 @@ definition_item = "~" , space , inline_text , newline ,
                   indent , inline_text , { newline , indent , inline_text } , newline ;
 
 (* 2.3 CentrMark Directives *)
-void_directive = "::" , [ space ] , identifier , [ space , "[" , sdl_properties_{inline} , "]" ] , newline ;
+void_directive = "::" , [ space ] , identifier , [ space , "[" , sdl_properties_{inline} , "]" ] , newline
+               | directive_fence , [ space ] , ( "include" | "set" ) , [ space , void_tail ] , newline ;
+void_tail = "[" , sdl_properties_{inline} , "]" | ? the remainder of the line ? ;
+(*
+  `:: include` and `::: include` are the same void directive. `::: set` is the
+  same kind of line. Neither searches for a closing fence.
+*)
 
 block_directive = directive_fence , [ space ] , identifier , [ space , "[" , sdl_properties_{inline} , "]" ] , newline ,
                   { block } ,
                   directive_fence , newline ;
 
 directive_fence = ":::" , { ":" } ;
+
+lang_island = directive_fence , [ space ] , "lang" , space , identifier , [ space , "[" , sdl_properties_{inline} , "]" ] , newline ,
+              { lang_raw_line } ,
+              directive_fence , newline ;
+lang_raw_line = ? any line except the matching closing directive_fence ? , newline ;
+(*
+  The language id is one bare word. `::: lang=kdl`, quotes, and a second word
+  are not this production. The body is raw until the fence of the same length.
+*)
 (* 
   Context-Sensitivity Rule: The closing `directive_fence` length must exactly 
   equal the opening `directive_fence` length to allow nesting.

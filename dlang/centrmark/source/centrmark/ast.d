@@ -12,6 +12,7 @@ enum BlockKind
 	List,
 	BlockDirective,
 	VoidDirective,
+	LangIsland,
 }
 
 enum InlineKind
@@ -108,6 +109,14 @@ struct AstBlockDirective
 	AstBlock[] body;
 }
 
+struct AstLangIsland
+{
+	int fenceLen;
+	string language;
+	string propsRaw;
+	string body;
+}
+
 struct AstBlock
 {
 	BlockKind kind;
@@ -122,6 +131,7 @@ struct AstBlock
 	AstListBlock listBlock;
 	AstVoidDirective voidDirective;
 	AstBlockDirective blockDirective;
+	AstLangIsland langIsland;
 }
 
 struct AstDocument

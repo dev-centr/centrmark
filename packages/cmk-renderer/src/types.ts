@@ -23,6 +23,7 @@ export type CmkBlock =
   | { kind: "List"; items?: CmkListItem[] }
   | { kind: "BlockDirective"; name?: string; propsRaw?: string; body?: CmkBlock[] }
   | { kind: "VoidDirective"; name?: string; propsRaw?: string }
+  | { kind: "LangIsland"; language?: string; propsRaw?: string; body?: string }
   | { kind: string; [key: string]: unknown };
 
 export type CmkAstDocument = {
@@ -65,6 +66,7 @@ export type RenderNode =
   | { type: "list"; items: RenderListItem[] }
   | { type: "blockDirective"; name: string; propsRaw: string; children: RenderNode[] }
   | { type: "voidDirective"; name: string; propsRaw: string }
+  | { type: "langIsland"; language: string; propsRaw: string; body: string }
   | { type: "sources"; title: string; entries: RenderSourceEntry[] }
   | { type: "unknown"; sourceKind: string };
 

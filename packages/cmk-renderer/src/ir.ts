@@ -128,6 +128,15 @@ function mapBlock(node: CmkBlock): RenderNode {
       propsRaw: directive.propsRaw ?? ""
     };
   }
+  if (node.kind === "LangIsland") {
+    const island = node as Extract<CmkBlock, { kind: "LangIsland" }>;
+    return {
+      type: "langIsland",
+      language: island.language ?? "",
+      propsRaw: island.propsRaw ?? "",
+      body: island.body ?? ""
+    };
+  }
   return { type: "unknown", sourceKind: node.kind };
 }
 

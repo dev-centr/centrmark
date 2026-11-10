@@ -1,0 +1,15 @@
+= 2026-11-10 - Language island
+
+A CentrMark document can hold another language without becoming a config format.
+
+== Added
+
+* `::: lang <id>` stores the language id, an optional bracket property, and the raw body
+* The body is not parsed as CentrMark. `` ```kdl `` stays a display fence
+* `::: include` and `::: set` are void directives, same as the two-colon form
+
+== Notes
+
+* `::: lang=kdl`, quotes, and a second word are rejected
+* A missing closing fence is an error
+* The Haskell subset does not parse this node yet

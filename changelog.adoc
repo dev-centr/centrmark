@@ -4,6 +4,12 @@
 
 * Bump website ``@asciidoctor/core`` from 3.x to ``^4.1.1``.
 
+== 2026-11-10 — Language island
+
+* `::: lang <id>` holds raw source for another language. The id is one bare word, and an unknown id is still legal.
+* `::: include` and `::: set` stay void directives, matching `:: include` and the showcase.
+* Detail: link:changelog-details/2026-11-10 - language-island.adoc[Language island].
+
 = Changelog
 
 == 2026-10-06 — Website dependency refresh

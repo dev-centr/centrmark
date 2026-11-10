@@ -151,3 +151,21 @@ test("renders specialized checklist, diagram, and animation directives", () => {
   assert.ok(html.includes("class=\"mermaid\""));
   assert.ok(html.includes("<lottie-player"));
 });
+
+test("language island stays raw source", () => {
+  const ast = {
+    hasFrontmatter: false,
+    blocks: [
+      {
+        kind: "LangIsland",
+        language: "kdl",
+        propsRaw: "",
+        body: "# not a heading"
+      }
+    ]
+  };
+  const html = renderIRToHtml(astJsonToRenderIR(ast));
+  assert.ok(html.includes("data-cmk-lang=\"kdl\""));
+  assert.ok(html.includes("# not a heading"));
+  assert.equal(html.includes("<h1>"), false);
+});

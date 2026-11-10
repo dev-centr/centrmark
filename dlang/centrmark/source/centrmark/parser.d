@@ -589,6 +589,92 @@ AstInlineNode[] parseInlines(string input)
 	return nodes;
 }
 
+private string tailAfterName(string line, int fenceLen, string name)
+{
+	auto after = stripLeft(strip(line)[fenceLen .. $]);
+	if (after.length < name.length || after[0 .. name.length] != name)
+		return "";
+	after = strip(after[name.length .. $]);
+	if (after.length > 0 && after[0] == '[')
+		return "";
+	return after;
+}
+
+private AstBlock voidBlock(string name, string propsRaw)
+{
+	AstVoidDirective vd;
+	vd.name = name;
+	vd.propsRaw = propsRaw;
+	AstBlock b;
+	b.kind = BlockKind.VoidDirective;
+	b.hasFrontmatter = false;
+	b.voidDirective = vd;
+	return b;
+}
+
+private AstBlock parseLangIsland(ref LineCursor cursor, int fenceLen, string rawLine)
+{
+	auto after = stripLeft(strip(rawLine)[fenceLen .. $]);
+	size_t endName;
+	string name;
+	if (!parseIdentifier(after, 0, name, endName) || name != "lang")
+		throw new Exception("lang block needs the word lang");
+
+	auto rest = stripLeft(after[endName .. $]);
+	if (rest.length == 0 || rest[0] == '=' || rest[0] == '"' || rest[0] == '\'')
+		throw new Exception("lang block needs a bare language id");
+
+	size_t endId;
+	string language;
+	if (!parseIdentifier(rest, 0, language, endId))
+		throw new Exception("lang block needs a bare language id");
+
+	auto tail = stripLeft(rest[endId .. $]);
+	string propsRaw;
+	if (tail.length > 0)
+	{
+		if (tail[0] != '[')
+			throw new Exception("lang block takes one bare language id");
+		auto close = lastIndexOfChar(tail, ']');
+		if (close == size_t.max || strip(tail[close + 1 .. $]).length != 0)
+			throw new Exception("lang block properties must be one bracket group");
+		propsRaw = strip(tail[1 .. close]);
+	}
+
+	size_t closePos;
+	if (!findClosingFence(cursor, fenceLen, cursor.pos + 1, closePos))
+		throw new Exception("lang block is missing its closing fence");
+
+	cursor.consume();
+	auto app = appender!string;
+	bool first = true;
+	while (!cursor.empty)
+	{
+		auto line = cursor.peek();
+		if (isClosingFence(line, fenceLen))
+		{
+			cursor.consume();
+			break;
+		}
+		if (!first)
+			app.put('\n');
+		first = false;
+		app.put(cursor.consume());
+	}
+
+	AstLangIsland island;
+	island.fenceLen = fenceLen;
+	island.language = language;
+	island.propsRaw = propsRaw;
+	island.body = app.data;
+
+	AstBlock block;
+	block.kind = BlockKind.LangIsland;
+	block.hasFrontmatter = false;
+	block.langIsland = island;
+	return block;
+}
+
 private bool tryParseVoidOrBlockDirective(ref LineCursor cursor, size_t currentIndent, out AstBlock outBlock)
 {
 	outBlock = AstBlock.init;
@@ -634,11 +720,25 @@ private bool tryParseVoidOrBlockDirective(ref LineCursor cursor, size_t currentI
 	if (!isFenceLine(trimmed, fenceLen))
 		return false;
 
+	auto info = parseFenceLineInfo(rawLine, fenceLen);
+	if (info.name == "include" || info.name == "set")
+	{
+		if (info.propsRaw.length == 0)
+			info.propsRaw = tailAfterName(rawLine, fenceLen, info.name);
+		cursor.consume();
+		outBlock = voidBlock(info.name, info.propsRaw);
+		return true;
+	}
+	if (info.name == "lang")
+	{
+		outBlock = parseLangIsland(cursor, fenceLen, rawLine);
+		return true;
+	}
+
 	// Decide: block directive if we can find a matching closing fence.
 	size_t closePos;
 	if (findClosingFence(cursor, fenceLen, cursor.pos + 1, closePos))
 	{
-		auto info = parseFenceLineInfo(rawLine, fenceLen);
 		// Consume opening
 		cursor.consume();
 
@@ -678,7 +778,7 @@ private bool tryParseVoidOrBlockDirective(ref LineCursor cursor, size_t currentI
 	}
 
 	// Fallback: treat as a void directive (covers cases where an author uses '::: name' as a one-liner).
-	auto info = parseFenceLineInfo(rawLine, fenceLen);
+	info = parseFenceLineInfo(rawLine, fenceLen);
 	cursor.consume();
 
 	AstVoidDirective vd;
@@ -1045,5 +1145,49 @@ AstDocument parseCmk(string input)
 	}
 
 	return doc;
+}
+
+unittest
+{
+	import std.exception : assertThrown;
+
+	auto doc = parseCmk("::: lang kdl\n# not a heading\n:::\n");
+	assert(doc.blocks.length == 1);
+	assert(doc.blocks[0].kind == BlockKind.LangIsland);
+	assert(doc.blocks[0].langIsland.language == "kdl");
+	assert(doc.blocks[0].langIsland.body == "# not a heading");
+
+	auto unknown = parseCmk("::: lang not-a-language\n:::\n");
+	assert(unknown.blocks[0].langIsland.language == "not-a-language");
+
+	auto withProps = parseCmk("::: lang kdl [file=\"a.kdl\"]\nnode\n:::\n");
+	assert(withProps.blocks[0].langIsland.propsRaw == "file=\"a.kdl\"");
+	assert(withProps.blocks[0].langIsland.body == "node");
+
+	auto blanks = parseCmk("::: lang kdl\n\na\n\n:::\n");
+	assert(blanks.blocks[0].langIsland.body == "\na\n");
+
+	auto longer = parseCmk(":::: lang kdl\n:::\n::::\n");
+	assert(longer.blocks[0].langIsland.body == ":::");
+
+	assertThrown(parseCmk("::: lang=kdl\n:::\n"));
+	assertThrown(parseCmk("::: lang \"kdl\"\n:::\n"));
+	assertThrown(parseCmk("::: lang kdl extra\n:::\n"));
+	assertThrown(parseCmk("::: lang kdl\n"));
+
+	auto includes = parseCmk("::: include file=\"./partials/hero.cmk\"\n::: set name=\"project\" value=\"Site\"\n::: section id=\"reuse-demo\"\nProject\n:::\n");
+	assert(includes.blocks.length == 3);
+	assert(includes.blocks[0].kind == BlockKind.VoidDirective);
+	assert(includes.blocks[0].voidDirective.propsRaw == "file=\"./partials/hero.cmk\"");
+	assert(includes.blocks[1].voidDirective.name == "set");
+	assert(includes.blocks[1].voidDirective.propsRaw == "name=\"project\" value=\"Site\"");
+	assert(includes.blocks[2].kind == BlockKind.BlockDirective);
+	assert(includes.blocks[2].blockDirective.name == "section");
+
+	auto bracketed = parseCmk(":: include [file=\"./partials/footer.cmk\"]\n");
+	assert(bracketed.blocks[0].voidDirective.propsRaw == "file=\"./partials/footer.cmk\"");
+
+	auto shown = parseCmk("```kdl\nnode\n```\n");
+	assert(shown.blocks[0].kind == BlockKind.CodeBlock);
 }
 

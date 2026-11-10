@@ -221,6 +221,9 @@ private void putBlockJson(Appender!string app, AstBlock b)
 	case BlockKind.VoidDirective:
 		putJsonString(app, "VoidDirective");
 		break;
+	case BlockKind.LangIsland:
+		putJsonString(app, "LangIsland");
+		break;
 	default:
 		assert(0, "Unhandled block kind (type label)");
 		break;
@@ -331,6 +334,23 @@ private void putBlockJson(Appender!string app, AstBlock b)
 		putJsonString(app, "body");
 		app.put(':');
 		putBlockArray(app, b.blockDirective.body);
+		break;
+
+	case BlockKind.LangIsland:
+		app.put(',');
+		putJsonInt(app, "fenceLen", b.langIsland.fenceLen);
+		app.put(',');
+		putJsonString(app, "language");
+		app.put(':');
+		putJsonString(app, b.langIsland.language);
+		app.put(',');
+		putJsonString(app, "propsRaw");
+		app.put(':');
+		putJsonString(app, b.langIsland.propsRaw);
+		app.put(',');
+		putJsonString(app, "body");
+		app.put(':');
+		putJsonString(app, b.langIsland.body);
 		break;
 	default:
 		assert(0, "Unhandled block kind (payload)");

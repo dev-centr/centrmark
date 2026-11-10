@@ -413,6 +413,9 @@ function renderNode(ctx: RenderContext, node: RenderNode): string {
     }
     return `<section data-cmk-directive="${escapeHtml(node.name)}" data-cmk-props="${escapeHtml(node.propsRaw)}">${renderNodes(ctx, node.children)}</section>`;
   }
+  if (node.type === "langIsland") {
+    return `<pre class="cmk-lang" data-cmk-lang="${escapeHtml(node.language)}" data-cmk-props="${escapeHtml(node.propsRaw)}">${escapeHtml(node.body)}</pre>`;
+  }
   if (node.type === "voidDirective") {
     const name = node.name.toLowerCase();
     if (name === "bibliography" || name === "sources") {

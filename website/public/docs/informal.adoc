@@ -122,6 +122,7 @@ Syntax: `:: name [properties]`
 Examples:
 * `:: toc [depth=3]`
 * `:: include [file="./partials/footer.cmk" vars={version: "1.2"}]`
+* `::: include file="./partials/footer.cmk"` is the same void directive. It does not open a block.
 
 === 3.4 Block Directives
 Used to construct nested structural elements containing markdown or other directives (Accordions, Tabs, Complex Admonitions, Code Groups). They start with a sequence of colons (fence), minimum of three `:::`. The block is terminated by a matching sequence of colons.
@@ -152,6 +153,20 @@ echo "Running on Linux"
 ```
 :::
 ::::
+----
+
+=== 3.4.1 Language island
+A language island holds another language inside the document. The body is raw source. CentrMark does not parse it, and an unknown language id is still a legal node.
+
+The language id is one bare word. `::: lang=kdl`, quotes, and a second word are rejected. Brackets stay available for a later property, such as a file name. A backtick fence is still display. A line of colons inside the body closes the island when it matches the opening fence, so a longer fence holds a body that itself contains `:::`.
+
+[source,centrmark]
+----
+::: lang kdl
+profile ipad-web {
+  include "web" "mobile-web"
+}
+:::
 ----
 
 === 3.5 Admonitions
